@@ -8,59 +8,55 @@ on:
     branches: [ main ]
 
 jobs:
-
-  build_test:
+  Build_Test:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
-    env:
-      CI: "true"
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: '3.10'
 
       - name: Install dependencies
-        run: |
-          pip install -r Grade_RAG/requirements.txt
+        run: pip install -r Grade_RAG/requirements.txt
 
-      - name: Run grading (CI simulation)
-        run: |
-          python Grade_RAG/grader.py
+      - name: Run grading
+        working-directory: Grade_RAG
+        run: python grader.py
 
       - name: Validate output
-        run: |
-          test -f Grade_RAG/graded_results.json
+        run: test -f Grade_RAG/graded_results.json
 
       - name: Upload CI artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ci-results
           path: Grade_RAG/graded_results.json
 
-
-  build_deploy:
-    if: github.event_name == 'push'
+  Build_Deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Prepare release
         run: |
-          mkdir release
+          mkdir -p release
           cp Grade_RAG/graded_results.json release/
 
       - name: Simulate deployment
         run: |
           echo "Deploying RAG grading system..."
-          echo "Deployment successful!"
+          echo "Deployment successful."
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload CD artifact
+        uses: actions/upload-artifact@v4
         with:
           name: production-results
           path: release/
