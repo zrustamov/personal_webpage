@@ -1,0 +1,27 @@
+{
+    "q1": {
+        "question": "Verilən iki tam ədədin cəmini hesablayan proqram yazın.",
+        "answer": "# İki tam ədəd daxil edin\na = int(input(\"Birinci ədədi daxil edin: \"))\nb = int(input(\"İkinci ədədi daxil edin: \"))\n# İki ədədin cəmini hesablayırıq\nsum = a + b\n# Nəticəni çap edirik\nprint(\"Ədədlərin cəmi:\", sum)",
+        "expert_grade": "Qiymətləndirmə:\\n• Sintaksis: 2\\n• Məlumat tipi: 2\\n• Daxiletmə və çıxış: 2\\n• Strukturluluq: 2\\n• Yaradıcı əlavələr: 2\\n➡️ Cəmi: 10 bal\\n"
+    },
+    "q2": {
+        "question": "Ədədin tək və ya cüt olduğunu yoxlayan proqram yazın.",
+        "answer": "n = int(input(\"Ədədi daxil edin: \"))\nif n % 2 == 0:\n\tprint(\"Cüt ədəddir.\")\nelse:\n\tprint(\"Tək ədəddir.\")",
+        "expert_grade": "Qiymətləndirmə:\\n• Sintaksis: 2\\n• Məlumat tipi: 2\\n• Daxiletmə və çıxış: 2\\n• Strukturluluq: 2\\n• Yaradıcı əlavələr: 2\\n➡️ Cəmi: 10 bal\\n"
+    },
+    "q3": {
+        "question": "1-dən 10-a qədər olan ədədləri çap edən proqram yazın.",
+        "answer": "for i in range(1, 11):\n\tprint(i)",
+        "expert_grade": "Qiymətləndirmə:\\n• Sintaksis: 2\\n• Məlumat tipi: 2\\n• Daxiletmə və çıxış: 2\\n• Strukturluluq: 2\\n• Yaradıcı əlavələr: 2\\n➡️ Cəmi: 10 bal\\n"
+    },
+    "q4": {
+        "question": "Siyahıdakı (list) bütün ədədlərin cəmini tapan proqram yazın.",
+        "answer": "nums = [2, 4, 6, 8]\nprint(\"Cəm:\", sum(nums))",
+        "expert_grade": "Qiymətləndirmə:\\n• Sintaksis: 2\\n• Məlumat tipi: 2\\n• Daxiletmə və çıxış: 2\\n• Strukturluluq: 2\\n• Yaradıcı əlavələr: 2\\n➡️ Cəmi: 10 bal\\n"
+    },
+    "q5": {
+        "question": "Daxil edilən ədədlər siyahısında ən böyük elementi tapın proqram yazın.",
+        "answer": "nums = [3, 5, 7, 2, 9]\nmax_val = nums[0]\nfor num in nums:\n\tif num > max_val:\n\t\tmax_val = num\nprint(\"Ən böyük:\", max_val)",
+        "expert_grade": "Qiymətləndirmə:\\n• Sintaksis: 2\\n• Məlumat tipi: 2\\n• Daxiletmə və çıxış: 2\\n• Strukturluluq: 2\\n• Yaradıcı əlavələr: 2\\n➡️ Cəmi: 10 bal\\n"
+    }
+}

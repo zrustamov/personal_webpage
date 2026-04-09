@@ -1,0 +1,447 @@
+{
+  "q1": {
+    "question": "Verilən iki tam ədədin cəmini hesablayan proqram yazın.",
+    "graded_answers": [
+      {
+        "student_id": 1,
+        "answer": "a, b=map(int, input().split())\nprint(a+b)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 2,
+        "answer": "Console.Write(\"Birinci tam ədədi daxil edin: \");\nint eded1 = Convert.ToInt32(Console.ReadLine());\nConsole.Write(\"İkinci tam ədədi daxil edin: \");\nint eded2 = Convert.ToInt32(Console.ReadLine());\nint cem = eded1 + eded2;\nConsole.WriteLine(\"Ədədlərin cəmi: \" + cem);",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal  \n\nŞərh: Tələbənin cavabı sintaksis baxımından düzgündür və proqramın məntiqi də doğru işləyir. Daxiletmə və çıxış düzgün şəkildə həyata keçirilmişdir. Strukturluluq da yaxşıdır, lakin yaradıcı əlavələr baxımından standart bir yanaşma ilə kifayətlənmişdir.",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 3,
+        "answer": "a=int(input())\nb=int(input())\nc=a+b\nprint(c)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal  \n\nŞərh: Tələbənin cavabı sintaksis baxımından düzgündür və proqramın əsas funksionallığını yerinə yetirir. Lakin, istifadəçi üçün daha aydın olması üçün daxil etmə mesajları əlavə oluna bilərdi. Yaradıcı əlavələr baxımından, standart bir yanaşma ilə kifayətlənilib.",
+        "model_grade": 9,
+        "expert_grade": 7
+      },
+      {
+        "student_id": 4,
+        "answer": "a=int(input())\nb=int(input())\nprint (a+b)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 7
+      },
+      {
+        "student_id": 5,
+        "answer": "x=int(input('tam ədəd daxil et')\ny=int(input('tam ədəd daxil et')\nS=0\nS=x+y\nPrint(S)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Daxil etmə funksiyasında parantez bağlanmayıb)\n• Məlumat tipi: 2 (Tam ədəd tipi düzgün istifadə olunub)\n• Daxiletmə və çıxış: 1 (Çıxış funksiyası \"Print\" ilə yazılıb, düzgün \"print\" olmalıdır)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin sintaksis səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll verilib)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 6,
+        "answer": "a=int(input())\nb=int(input())\nc=a+b\nprint(c)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 2\n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2\n• Yaradıcı əlavələr: 1\n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 8
+      },
+      {
+        "student_id": 7,
+        "answer": "Ghkl",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0\n• Məlumat tipi: 0\n• Daxiletmə və çıxış: 0\n• Strukturluluq: 0\n• Yaradıcı əlavələr: 0\n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 8,
+        "answer": "a=int(input())\nb=int(input())\nPrint(a+b)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Print() funksiyası böyük hərflə yazılıb, düzgün sintaksis deyil)\n• Məlumat tipi: 2 (Tam ədəd daxil edilməsi üçün int() funksiyası düzgün istifadə olunub)\n• Daxiletmə və çıxış: 1 (Daxiletmə düzgün, lakin çıxışda səhv var)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin şərh yoxdur)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 9,
+        "answer": "a = int(input(\"Birinci ədədi daxil edin: \"))\nb = int(input(\"İkinci ədədi daxil edin: \"))\ncem = a + b\nprint(\"Cəm:\", cem)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal  \n\nİzah: Tələbənin cavabı sintaksis baxımından düzgündür və proqramın məqsədini yerinə yetirir. Məlumat tipləri düzgün istifadə olunub. Daxiletmə və çıxış aydındır. Kod ardıcıl və oxunaqlıdır, lakin şərhlər əlavə edilsəydi daha aydın olardı. Yaradıcı əlavələr baxımından isə standart bir yanaşma var, lakin bu, proqramın işləməsinə təsir etmir.",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 10,
+        "answer": "a=int(input(\"1-ci ededi daxil et:\"))\nb=int(input (\"2-ci ededi daxil et:\"))\nprint(a+b)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 2\n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2\n• Yaradıcı əlavələr: 1\n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 11,
+        "answer": "a=int(input())\nb=int(input())\nprint(a+b)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal  \n\nŞərh: Tələbənin cavabı sintaksis baxımından düzgündür və proqramın əsas funksionallığını yerinə yetirir. Lakin, istifadəçi üçün daha aydın olması üçün daxil edilən ədədlərin nə olduğunu izah edən bir mesaj əlavə etmək faydalı olardı. Bu səbəbdən yaradıcı əlavələr bölməsində 1 bal verildi.",
+        "model_grade": 9,
+        "expert_grade": 8
+      },
+      {
+        "student_id": 12,
+        "answer": "a=float(input ())\nb=float (input ())\nc=a+b\nPrint(c)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Print() funksiyası kiçik hərflə yazılmalıdır: print())\n• Məlumat tipi: 2 (Düzgün məlumat tipi istifadə olunub, lakin tam ədəd əvəzinə float istifadə edilib)\n• Daxiletmə və çıxış: 1 (Daxil edilən ədədlərin tam ədəd olması tələb olunurdu, lakin float istifadə edilib)\n• Strukturluluq: 1 (Kod qismən aydındır, lakin şərh yoxdur)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      }
+    ]
+  },
+  "q2": {
+    "question": "Ədədin tək və ya cüt olduğunu yoxlayan proqram yazın.",
+    "graded_answers": [
+      {
+        "student_id": 1,
+        "answer": "a=int(input())\nprint(\"cüt\" if a%2==0 else \"tək\")",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 2\n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2\n• Yaradıcı əlavələr: 1\n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 8
+      },
+      {
+        "student_id": 2,
+        "answer": "Console.Write(\"Bir tam ədəd daxil edin: \");\nint eded = Convert.ToInt32(Console.ReadLine());\nif (eded % 2 == 0)\n{\nConsole.WriteLine(\"Daxil etdiyiniz ədəd cütdür.\");\n}\nelse\n{\nConsole.WriteLine(\"Daxil etdiyiniz ədəd təkdir.\");\n}",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal  \n\nŞərh: Tələbənin cavabı sintaksis baxımından düzgündür və proqramın məntiqi də doğrudur. Daxil edilən ədədin cüt və ya tək olduğunu düzgün yoxlayır. Strukturu aydındır, lakin yaradıcı əlavələr azdır, çünki standart bir yanaşma ilə həll olunub.",
+        "model_grade": 9,
+        "expert_grade": 10
+      },
+      {
+        "student_id": 3,
+        "answer": "n=int(input())\nif n%2==0:\nprint('Cüt')\nelse:\nprint('Tək')",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (print funksiyası düzgün indentasiya edilməyib)\n• Məlumat tipi: 2 (ədəd düzgün şəkildə int tipinə çevrilir)\n• Daxiletmə və çıxış: 1 (çıxış mesajları düzgün, lakin daha aydın ola bilər)\n• Strukturluluq: 1 (kodun strukturu qismən düzgündür, amma indentasiya problemi var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 7
+      },
+      {
+        "student_id": 4,
+        "answer": "a=int(input())\nif a%2==0:\nprint(\"eded cütdür\")\nelse:\nprint(\"eded tekdir\")",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (print funksiyası düzgün indentasiya edilməyib)\n• Məlumat tipi: 2 (ədəd düzgün şəkildə int tipinə çevrilir)\n• Daxiletmə və çıxış: 1 (çıxış mesajları aydındır, lakin formatda kiçik uyğunsuzluq var)\n• Strukturluluq: 1 (kodun strukturu qismən aydındır, amma indentasiya problemi var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur, standart həll)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 5,
+        "answer": "n=int(input ('ədəd daxil et')\nİf n%2==0\nPrint('cutdur')\nİf n%2==1\nPrint('təkdir')",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0 (Düzgün parantez bağlanmayıb, \"if\" və \"print\" kiçik hərflə yazılıb)\n• Məlumat tipi: 2 (Daxil edilən ədəd düzgün şəkildə tam ədəd tipinə çevrilir)\n• Daxiletmə və çıxış: 1 (Daxil etmə düzgün, amma çıxış mesajları düzgün formatda deyil)\n• Strukturluluq: 1 (Kodda müəyyən struktura riayət olunub, amma \"if\" blokları düzgün yazılmayıb)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll verilib)\n\n➡️ Cəmi: 4 bal",
+        "model_grade": 4,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 6,
+        "answer": "t=int(input())\nİf t%2==0:\nprint(\"eded cütdür\")\nelse:\nprint(\"eded tekdir\")",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (İf əvəzinə \"if\" yazılmalıdır)\n• Məlumat tipi: 2 (Düzgün məlumat tipi istifadə olunub)\n• Daxiletmə və çıxış: 1 (Çıxış mesajları düzgün, lakin daxil etmə hissəsindəki \"İf\" sintaksis səhvi var)\n• Strukturluluq: 1 (Kod qismən aydındır, lakin \"if\" yazılışı səhvdir)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll verilib)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 7,
+        "answer": "Vbjjk",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 8,
+        "answer": "a=int(input())\nIf a%2==0:\nPrint('cut')\nelse:\nPrint('tek')",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (İlk hərf böyük yazıldığı üçün \"If\" və \"Print\" səhvdir)\n• Məlumat tipi: 2 (Düzgün məlumat tipi istifadə olunub)\n• Daxiletmə və çıxış: 1 (Çıxış mesajları düzgün deyil, \"cut\" və \"tek\" əvəzinə \"Cüt ədəddir.\" və \"Tək ədəddir.\" olmalı idi)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin sintaksis səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll təqdim olunub)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 9,
+        "answer": "a = int(input('Birinci ədədi daxil edin: '))\nb = int(input('İkinci ədədi daxil edin: '))\ncem = a + b\nprint('Cəm:', cem)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 1  \n• Strukturluluq: 1  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 6 bal  \n\n**İzah:**  \n- **Sintaksis:** Tələbənin kodunda sintaksis səhvi yoxdur, buna görə 2 bal verilir.\n- **Məlumat tipi:** Daxil edilən ədədlər düzgün şəkildə tam ədəd (int) tipinə çevrilir, buna görə 2 bal verilir.\n- **Daxiletmə və çıxış:** Tələbə iki ədəd daxil edir, lakin proqramın tək və ya cüt olduğunu yoxlamır, buna görə 1 bal verilir.\n- **Strukturluluq:** Kod müəyyən bir strukturda olsa da, tələb olunan məntiqi yerinə yetirmir, buna görə 1 bal verilir.\n- **Yaradıcı əlavələr:** Proqramda yaradıcı yanaşma yoxdur, yalnız cəmi hesablanır, buna görə 0 bal verilir.",
+        "model_grade": 6,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 10,
+        "answer": "a=int(input(\"eded daxil et:\"))\nİf a%2==0:\nprint(\"ədəd cürdür\")\nelse:\nprint(\"eded təkdir\")",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (if sözü kiçik hərflə yazılıb, düzgün yazılışı \"if\" olmalıdır)\n• Məlumat tipi: 2 (ədəd düzgün şəkildə tam ədəd kimi daxil edilir)\n• Daxiletmə və çıxış: 1 (çıxış mesajları düzgün, lakin formatlama məsələləri var)\n• Strukturluluq: 1 (kodun strukturu qismən aydındır, lakin indentasiya səhvləri var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur, standart həll təqdim olunub)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 11,
+        "answer": "a=int(input())\nif a%2==0 :\nprint(\"Ədəd cürdür\")\nelse :\nprint(\"Ədəd təkdir\")",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (print funksiyası düzgün indentasiya edilməyib)\n• Məlumat tipi: 2 (ədəd düzgün şəkildə int tipinə çevrilir)\n• Daxiletmə və çıxış: 1 (çıxış mesajları aydındır, lakin formatda kiçik uyğunsuzluq var)\n• Strukturluluq: 1 (kodun strukturu qismən düzgündür, lakin indentasiya problemi var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur, standart həll)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 12,
+        "answer": "a=int(input ())\nIf a%2==0:\nPrint(\"cut\")\nelse:\nprint(\"Tek\")",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (İlk hərf böyük yazıldığı üçün \"If\" və \"Print\" səhvdir)\n• Məlumat tipi: 2 (Düzgün məlumat tipi istifadə olunub)\n• Daxiletmə və çıxış: 1 (Çıxış mesajları düzgün deyil, \"cut\" və \"Tek\" əvəzinə \"Cüt\" və \"Tək\" olmalıdır)\n• Strukturluluq: 1 (Kod ardıcıl olsa da, sintaksis səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      }
+    ]
+  },
+  "q3": {
+    "question": "1-dən 10-a qədər olan ədədləri çap edən proqram yazın.",
+    "graded_answers": [
+      {
+        "student_id": 1,
+        "answer": "for i in range(1,10):\nprint(i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (print funksiyası düzgün indentasiya edilməyib)\n• Məlumat tipi: 2 (ədədlər düzgün tipdədir)\n• Daxiletmə və çıxış: 1 (1-dən 10-a qədər olan ədədləri çap etmir, çünki range(1, 10) 10-u daxil etmir)\n• Strukturluluq: 1 (kod qismən strukturludur, lakin indentasiya problemi var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 2,
+        "answer": "Console.WriteLine(\"1-dən 10-a qədər ədədlər:\");\nfor (int i = 1; i <= 10; i++)\n{\nConsole.WriteLine(i);\n}",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal  \n\nŞərh: Tələbə cavabı sintaksis baxımından düzgün və aydındır. 1-dən 10-a qədər olan ədədləri çap etmək üçün düzgün döngü istifadə olunub. Lakin, yaradıcı əlavələr baxımından standart bir həll təqdim edilib, buna görə 1 bal verilib.",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 3,
+        "answer": "for i in range(1,10):\nprint(i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (print funksiyası düzgün indentasiya edilməyib)\n• Məlumat tipi: 2 (ədədlər düzgün istifadə olunub)\n• Daxiletmə və çıxış: 1 (1-dən 10-a qədər olan ədədləri çap edir, lakin 10 daxil deyil)\n• Strukturluluq: 1 (kod qismən aydındır, lakin indentasiya problemi var)\n• Yaradıcı əlavələr: 0 (sadə bir döngü, yaradıcı yanaşma yoxdur)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 7
+      },
+      {
+        "student_id": 4,
+        "answer": "a=0\nwhile a<=9\na=a+1\nprint(a)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (while döngüsündə iki nöqtə (:) əskikdir)\n• Məlumat tipi: 2 (ədədləri düzgün çap edir)\n• Daxiletmə və çıxış: 2 (1-dən 10-a qədər olan ədədləri düzgün çap edir)\n• Strukturluluq: 1 (kod qismən strukturludur, lakin indentasiya düzgün deyil)\n• Yaradıcı əlavələr: 0 (standart yanaşma, heç bir yaradıcı element yoxdur)️ Cəmi: 6 bal",
+        "model_grade": 6,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 5,
+        "answer": "For i in range ( 1; 11):\nPrint (i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0 (Səhv istifadə olunan nöqtəli vergül)\n• Məlumat tipi: 0 (Məlumat tipi düzgün deyil)\n• Daxiletmə və çıxış: 0 (Kod işləməyəcək)\n• Strukturluluq: 1 (Qismən strukturludur, lakin sintaksis səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur)\n➡️ Cəmi: 1 bal",
+        "model_grade": 1,
+        "expert_grade": 1
+      },
+      {
+        "student_id": 6,
+        "answer": "for i in range(1,11):\nprint(i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 8
+      },
+      {
+        "student_id": 7,
+        "answer": "Vhjo",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 8,
+        "answer": "for i in range(1,11):\nPrint(i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Print() funksiyası böyük hərflə yazılıb, düzgün yazılışı print() olmalıdır)\n• Məlumat tipi: 2 (Məlumat tipi düzgün istifadə olunub)\n• Daxiletmə və çıxış: 2 (Daxiletmə və çıxış düzgün şəkildə həyata keçirilib)\n• Strukturluluq: 2 (Kod ardıcıl və oxunaqlıdır)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll təqdim edilib)\n➡️ Cəmi: 7 bal",
+        "model_grade": 7,
+        "expert_grade": 7
+      },
+      {
+        "student_id": 9,
+        "answer": "for i in range(1, 11):\nprint(i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 8
+      },
+      {
+        "student_id": 10,
+        "answer": "s=0\nfor i in range(0:10):\ns=s+1\nprint (s,end=())",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0 (for döngüsündəki sintaksis səhvi: `range(0:10)` düzgün deyil, `range(0, 10)` olmalıdır)\n• Məlumat tipi: 0 (səhv istifadə olunan dəyişənlər və funksiyalar)\n• Daxiletmə və çıxış: 0 (çıxış düzgün deyil, `print(s,end=())` sintaksis səhvidir)\n• Strukturluluq: 0 (kodun strukturu aydın deyil, qarışıqdır)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur)\n\n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 11,
+        "answer": "for i in range (1,10) :\nprint(i)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (for dövrü düzgün yazılıb, lakin print funksiyası düzgün indentasiya edilməyib)\n• Məlumat tipi: 2 (1-dən 10-a qədər olan ədədləri çap etmək üçün düzgün məlumat tipi istifadə olunub)\n• Daxiletmə və çıxış: 1 (çıxış düzgün deyil, çünki 10 ədədi çap olunmur)\n• Strukturluluq: 1 (kod qismən strukturludur, lakin indentasiya problemi var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur, standart həll verilib)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 12,
+        "answer": "for i in range (1,11):\nprint(I)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (print(I) yerinə print(i) yazılmalıdır)\n• Məlumat tipi: 2 (1-dən 10-a qədər olan ədədləri çap etmək üçün düzgün məlumat tipi istifadə olunub)\n• Daxiletmə və çıxış: 1 (print funksiyası düzgün istifadə olunmayıb, nəticə düzgün alınmayacaq)\n• Strukturluluq: 1 (for döngüsü düzgün yazılıb, lakin print funksiyasında səhv var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur, standart həll verilib)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 5
+      }
+    ]
+  },
+  "q4": {
+    "question": "Siyahıdakı (list) bütün ədədlərin cəmini tapan proqram yazın.",
+    "graded_answers": [
+      {
+        "student_id": 1,
+        "answer": "print(sum(list(map(int, intput().split()))))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (intput əvəzinə input yazılmalıdır)\n• Məlumat tipi: 2 (düzgün məlumat tipi istifadə olunub)\n• Daxiletmə və çıxış: 1 (daxiletmə düzgün deyil, lakin çıxış formatı var)\n• Strukturluluq: 1 (qismən strukturludur, lakin sintaksis səhvi var)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 2,
+        "answer": "Foreach-nen yazmaq olar amma axot yoxdu bezdim mötərizə qoymaqdan )))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal  \n\nŞərh: Tələbənin cavabı sintaksis və məntiq baxımından tamamilə uyğunsuzdur. Hətta kod təqdim edilmədiği üçün, bütün meyarlar 0 bal alır.",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 3,
+        "answer": "a=[ ]\nprint(sum(a))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 1  \n• Strukturluluq: 1  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 4 bal  \n\n**İzah:**  \n- Sintaksis: Kod sintaksis baxımından düzgündür.  \n- Məlumat tipi: Tələbə siyahını (list) boş olaraq təyin edib, lakin bu, cəmi hesablamaq üçün mənasızdır.  \n- Daxiletmə və çıxış: `sum(a)` funksiyası düzgün istifadə olunub, lakin `a` boş olduğu üçün nəticə 0 olacaq.  \n- Strukturluluq: Kod sadədir, lakin daha aydın olması üçün dəyişən adları daha mənalı olmalı idi.  \n- Yaradıcı əlavələr: Heç bir yaradıcı yanaşma yoxdur, standart bir həll təqdim edilib.",
+        "model_grade": 4,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 4,
+        "answer": "a=input()\na=list(a)\nb=len(a)\nwhile a>=b-1\n\n? Burda beynim error verdi",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal  \n\nŞərh: Tələbənin cavabında sintaksis səhvləri var, kod işləmir və problemə yanaşma tamamilə yanlışdır. Heç bir düzgün anlayış və ya struktur yoxdur.",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 5,
+        "answer": "a [1,2,4,66,47,4,64,64,9,78]\nS=0\nFor i in a:\nS=S+i\nPrint(S)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Kodda \"For\" və \"Print\" sözləri kiçik hərflərlə yazılmalıdır, yəni \"for\" və \"print\" olmalıdır)\n• Məlumat tipi: 2 (Siyahı düzgün yaradılıb)\n• Daxiletmə və çıxış: 1 (Çıxış düzgün formatda deyil, \"print\" kiçik hərflə olmalıdır)\n• Strukturluluq: 1 (Kod ardıcıl olsa da, sintaksis səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll təqdim edilib)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 6,
+        "answer": "k= list(input())\nprint(sum(k))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (list(input()) düzgün deyil, input() nəticəsi stringdir, onu int-ə çevirmək lazımdır)\n• Məlumat tipi: 1 (k dəyişəni string tipindədir, ədədlərə çevrilməlidir)\n• Daxiletmə və çıxış: 1 (input() düzgün istifadə olunmayıb, çıxış yoxdur)\n• Strukturluluq: 1 (kod qismən aydındır, lakin düzgün işləməyəcək)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur)\n\n➡️ Cəmi: 4 bal",
+        "model_grade": 4,
+        "expert_grade": 3
+      },
+      {
+        "student_id": 7,
+        "answer": "Tyuı",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 8,
+        "answer": "A=[]\nPrint(sum(A))\n\nSiyahının elementləri verildikdə",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Print böyük hərflə yazılıb, düzgün sintaksis deyil)\n• Məlumat tipi: 1 (Siyahı boşdur, lakin ədədlərin cəmini tapmaq üçün düzgün tip istifadə olunub)\n• Daxiletmə və çıxış: 1 (Daxiletmə yoxdur, yalnız boş siyahı var, çıxış isə düzgün formatda deyil)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin aydın deyil)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, yalnız standart cavab verilib)\n\n➡️ Cəmi: 4 bal",
+        "model_grade": 4,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 9,
+        "answer": "ededdler = [1, 3, 5, 7, 9] # nümunə siyahı\ncem = sum(ededdler)\nprint(\"Cəm:\", cem)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 2\n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2\n• Yaradıcı əlavələr: 1\n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 10,
+        "answer": "lst=[1,2,3,4,5]\ns=sum(lst)\nprint (s)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 2\n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2\n• Yaradıcı əlavələr: 1\n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 8
+      },
+      {
+        "student_id": 11,
+        "answer": "a=input()\na=list(a)\nS=0\nfor i in a :\nS=S+i\nprint(S)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Düzgün indentasiya yoxdur, `S=S+i` xətti düzgün yazılmayıb)\n• Məlumat tipi: 1 (Daxil edilən məlumatın tipi düzgün çevrilmir, `input()` funksiyası string qaytarır, bu da ədədlərin cəmini hesablamağa imkan vermir)\n• Daxiletmə və çıxış: 1 (Daxil edilən ədədlər düzgün cəmlənmir, çıxış düzgün deyil)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin indentasiya səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart bir yanaşmadır)\n\n➡️ Cəmi: 4 bal",
+        "model_grade": 4,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 12,
+        "answer": "a=[1,2,3,4,5]\ns=0\nfor i in a:\ns=s+i\nPrint(s)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (Print() funksiyası böyük hərflə yazılıb, düzgün yazılışı print() olmalıdır)\n• Məlumat tipi: 2 (Siyahı düzgün şəkildə istifadə olunub)\n• Daxiletmə və çıxış: 1 (Çıxış düzgün formatda deyil, \"Print(s)\" əvəzinə \"print(s)\" olmalıdır)\n• Strukturluluq: 1 (Kod ardıcıl olsa da, indentasiya səhvi var; \"s=s+i\" xətti düzgün indentasiya edilməyib)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart döngü istifadə olunub)\n\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 5
+      }
+    ]
+  },
+  "q5": {
+    "question": "Daxil edilən ədədlər siyahısında ən böyük elementi tapan proqram yazın.",
+    "graded_answers": [
+      {
+        "student_id": 1,
+        "answer": "print(max(list(map(int, intput().split()))))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (intput() yazılışı səhvdir, input() olmalıdır)\n• Məlumat tipi: 2 (daxil edilən ədədləri düzgün şəkildə tam ədədə çevirir)\n• Daxiletmə və çıxış: 1 (daxil edilən ədədləri düzgün alır, lakin çıxış formatı yoxdur)\n• Strukturluluq: 1 (kod qismən aydındır, lakin daha yaxşı strukturlaşdırıla bilər)\n• Yaradıcı əlavələr: 0 (sadə bir yanaşmadır, yaradıcı bir element yoxdur)\n➡️ Cəmi: 5 bal",
+        "model_grade": 5,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 2,
+        "answer": "Burda da dövrə salmaq lazımdı , onada axot yoxdu ))))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal  \n\nŞərh: Tələbənin cavabı tamamilə mənasızdır və proqramlaşdırma anlayışını əks etdirmir. Sintaksis, məlumat tipi, giriş-çıxış, struktur və yaradıcı yanaşma baxımından heç bir müsbət cəhət yoxdur.",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 3,
+        "answer": "a=[ ]\nprint(max(a))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 1\n• Daxiletmə və çıxış: 1\n• Strukturluluq: 1\n• Yaradıcı əlavələr: 0\n➡️ Cəmi: 5 bal\n\n**İzah:**\n- **Sintaksis:** Kod sintaksis baxımından düzgündür, buna görə 2 bal.\n- **Məlumat tipi:** Daxil edilən ədəd siyahısı boşdur, bu da kodun işləməməsinə səbəb olur. Bu səbəbdən 1 bal.\n- **Daxiletmə və çıxış:** Daxil edilən ədəd siyahısı olmadığı üçün çıxış da düzgün deyil. 1 bal.\n- **Strukturluluq:** Kod qismən strukturludur, lakin funksionallıq tam deyil. 1 bal.\n- **Yaradıcı əlavələr:** Yaradıcı yanaşma yoxdur, standart bir həll təqdim olunub. 0 bal.",
+        "model_grade": 5,
+        "expert_grade": 5
+      },
+      {
+        "student_id": 4,
+        "answer": "🥲",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 5,
+        "answer": "a[82,22,72,57,29,79,67,98,100,176]\nk=1\nFor i in a:\nİf i>k:\nk=i\nPrint(k)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (For və İf sözləri kiçik hərflə yazılmalıdır, \"Print\" isə \"print\" olmalıdır)\n• Məlumat tipi: 1 (Siyahı düzgün yaradılmayıb, \"a\" dəyişəni düzgün təyin edilməyib)\n• Daxiletmə və çıxış: 1 (Çıxış düzgün formatda deyil, \"print\" funksiyası düzgün istifadə olunmayıb)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin sintaksis səhvləri var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, standart həll təqdim olunub)\n\n➡️ Cəmi: 4 bal",
+        "model_grade": 4,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 6,
+        "answer": "a=list(input())\nprint(max(a))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 1  \n• Daxiletmə və çıxış: 1  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 6 bal  \n\n**İzah:**  \n- **Sintaksis:** Tələbənin kodu sintaksis baxımından düzgündür, buna görə 2 bal verilir.\n- **Məlumat tipi:** `input()` funksiyası ilə alınan məlumatlar siyahı şəklindədir, lakin `input()` funksiyası ilə alınan ədədlər string tipindədir. `max()` funksiyası stringlər arasında müqayisə edəcək, bu da düzgün nəticə verməyə bilər. Buna görə 1 bal verilir.\n- **Daxiletmə və çıxış:** Daxil edilən ədədlərin düzgün formatda olmadığını nəzərə alaraq, çıxışın düzgünlüyü sual altındadır. Buna görə 1 bal verilir.\n- **Strukturluluq:** Kod ardıcıl və oxunaqlıdır, buna görə 2 bal verilir.\n- **Yaradıcı əlavələr:** Tələbə yalnız standart bir həll təqdim edib, buna görə 0 bal verilir.",
+        "model_grade": 6,
+        "expert_grade": 6
+      },
+      {
+        "student_id": 7,
+        "answer": "Vhjj",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 0  \n• Məlumat tipi: 0  \n• Daxiletmə və çıxış: 0  \n• Strukturluluq: 0  \n• Yaradıcı əlavələr: 0  \n➡️ Cəmi: 0 bal",
+        "model_grade": 0,
+        "expert_grade": 0
+      },
+      {
+        "student_id": 8,
+        "answer": "A=[]\nPrint(max(A))\n\n\nSiyahının elementləri verildikdə",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2 (Python-da sintaksis düzgündür)\n• Məlumat tipi: 0 (A siyahısı boşdur, bu səbəbdən max funksiyası işləməyəcək)\n• Daxiletmə və çıxış: 0 (Daxil edilən ədədlər yoxdur, çıxış düzgün deyil)\n• Strukturluluq: 1 (Kod qismən strukturludur, lakin boş siyahı problemi var)\n• Yaradıcı əlavələr: 0 (Heç bir yaradıcı yanaşma yoxdur, yalnız standart kod verilib)\n\n➡️ Cəmi: 3 bal",
+        "model_grade": 3,
+        "expert_grade": 3
+      },
+      {
+        "student_id": 9,
+        "answer": "ededdler = list(map(int, input(\"Ədədləri boşluqla ayrılmış daxil edin: \").split()))\nmax_eded = max(ededdler)\nprint(\"Ən böyük ədəd:\", max_eded)",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2\n• Məlumat tipi: 2\n• Daxiletmə və çıxış: 2\n• Strukturluluq: 2\n• Yaradıcı əlavələr: 1\n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 10,
+        "answer": "lst=[1,2,3,4,5]\nprint (max (lst))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 9
+      },
+      {
+        "student_id": 11,
+        "answer": "a=input()\na=list(a)\nprint(max(a))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 1 (input() funksiyası düzgün istifadə olunmayıb, ədədlər siyahısı düzgün alınmayıb)\n• Məlumat tipi: 1 (a=list(a) ilə ədədlər siyahısı yaradılmır, çünki a stringdir)\n• Daxiletmə və çıxış: 1 (daxil edilən ədədlər siyahısı düzgün alınmır, max() funksiyası işləməyəcək)\n• Strukturluluq: 1 (kod qismən aydındır, lakin düzgün işləməsi üçün düzəlişlər tələb olunur)\n• Yaradıcı əlavələr: 0 (heç bir yaradıcı yanaşma yoxdur, standart bir yanaşma var)\n\n➡️ Cəmi: 4 bal",
+        "model_grade": 4,
+        "expert_grade": 4
+      },
+      {
+        "student_id": 12,
+        "answer": "a=[2,5,7,9,12]\nPrint(max(a))",
+        "grade": "Qiymətləndirmə:\n• Sintaksis: 2  \n• Məlumat tipi: 2  \n• Daxiletmə və çıxış: 2  \n• Strukturluluq: 2  \n• Yaradıcı əlavələr: 1  \n➡️ Cəmi: 9 bal",
+        "model_grade": 9,
+        "expert_grade": 9
+      }
+    ]
+  }
+}
