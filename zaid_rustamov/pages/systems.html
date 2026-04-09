@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How My Systems Work | Zaid Rustamov</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="../index.html">Zaid Rustamov</a>
+        <nav>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="systems.html">How Systems Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card panel reveal">
+        <p class="kicker">Bonus</p>
+        <h1>How My Systems Work</h1>
+        <p>
+          This page explains the architecture choices behind my AI systems, from retrieval to orchestration and answer
+          generation.
+        </p>
+      </section>
+
+      <section class="section grid-3 reveal delay-1">
+        <article class="card panel">
+          <h2>RAG Pipeline</h2>
+          <p>
+            Query intake, text normalization, candidate generation, and grounded response synthesis are split into
+            measurable stages for reliability.
+          </p>
+        </article>
+        <article class="card panel">
+          <h2>Hybrid Retrieval</h2>
+          <p>
+            Dense retrieval captures semantics while sparse retrieval protects exact legal terms and entities. Fusion
+            combines both for stronger recall and precision.
+          </p>
+        </article>
+        <article class="card panel">
+          <h2>Multi-Agent Design</h2>
+          <p>
+            Specialized agents handle intent, routing, and response strategy so the system remains modular, testable,
+            and extensible.
+          </p>
+        </article>
+      </section>
+
+      <section class="section reveal delay-2">
+        <article class="card panel">
+          <h2>Typical Flow</h2>
+          <div class="timeline">
+            <div class="timeline-item"><strong>1.</strong> User query and intent classification</div>
+            <div class="timeline-item"><strong>2.</strong> Query normalization and legal scope filtering</div>
+            <div class="timeline-item"><strong>3.</strong> Dense + sparse retrieval from Milvus and index stores</div>
+            <div class="timeline-item"><strong>4.</strong> Reciprocal Rank Fusion + LLM reranking</div>
+            <div class="timeline-item"><strong>5.</strong> Evidence-grounded response generation</div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 Zaid Rustamov • AI Engineer & Researcher</div>
+    </footer>
+    <script src="../assets/script.js"></script>
+  </body>
+</html>
