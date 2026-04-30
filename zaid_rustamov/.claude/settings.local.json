@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:samirrustamov.com)",
+      "Bash(python -c ' *)",
+      "WebFetch(domain:scholar.google.com)",
+      "WebFetch(domain:ieeexplore.ieee.org)",
+      "Bash(python -)"
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Publications &mdash; Zaid Rustamov</title>
+    <meta
+      name="description"
+      content="Peer-reviewed publications by Zaid Rustamov: RAG on Azerbaijani tax law, contextualized embeddings, spelling correction, and sentiment analysis."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="canonical" href="publications.html" />
+    <meta property="og:title" content="Publications — Zaid Rustamov" />
+    <meta property="og:description" content="Research publications on RAG, NLP for Azerbaijani, and legal AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/me.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="alternate" hreflang="en" href="publications.html" />
+    <link rel="alternate" hreflang="az" href="publications-az.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index.html">Zaid Rustamov</a>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="talks.html">Talks</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a class="lang-toggle" href="publications-az.html" hreflang="az">AZ</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <section class="hero reveal">
+          <p class="kicker">Publications</p>
+          <h1>Peer-reviewed work</h1>
+          <p class="lede">
+            Research output on retrieval-augmented generation, low-resource NLP, and legal AI. Most of it traces back
+            to a problem I hit while shipping something.
+          </p>
+        </section>
+
+        <section class="section reveal delay-1">
+          <div class="filters" data-filter-group>
+            <button data-filter="all" class="active">All</button>
+            <button data-filter="rag">RAG</button>
+            <button data-filter="nlp">NLP</button>
+            <button data-filter="legal">Legal AI</button>
+            <button data-filter="sentiment">Sentiment</button>
+          </div>
+
+          <article class="pub" data-tags="rag legal">
+            <p class="pub-year">2025</p>
+            <h3>Enhancing Retrieval and Re-ranking in RAG: A Case Study on Tax Law of Azerbaijan</h3>
+            <p class="authors">
+              <span class="author-self">Z. Rustamov</span>, M. Gasimzade, S. Rustamov
+            </p>
+            <p class="venue">
+              IEEE 19th International Conference on Application of Information and Communication Technologies (AICT
+              2025)
+            </p>
+            <p class="abstract">
+              A case study on retrieval-augmented generation for Azerbaijani tax law. Compares hybrid retrieval (dense
+              + sparse), Reciprocal Rank Fusion variants, and reranking strategies on a corpus of legislative articles
+              and real legal queries.
+            </p>
+            <div class="pub-meta">
+              <span class="chip">RAG</span>
+              <span class="chip">Hybrid Retrieval</span>
+              <span class="chip">Legal AI</span>
+              <span class="chip">Reranking</span>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="nlp">
+            <p class="pub-year">2024</p>
+            <h3>Contextualized Word Embeddings in Azerbaijani Language</h3>
+            <p class="authors">
+              T. Alizada, U. Suleymanov, <span class="author-self">Z. Rustamov</span>
+            </p>
+            <p class="venue">
+              IEEE 18th International Conference on Application of Information and Communication Technologies (AICT
+              2024) &middot; <span style="color:var(--accent)">cited 4&times;</span>
+            </p>
+            <p class="abstract">
+              Pretraining and fine-tuning transformer models (RoBERTa, GPT-2) on curated Azerbaijani datasets to
+              produce contextualized embeddings, contributing toward closing the resource gap for Azerbaijani-language
+              NLP.
+            </p>
+            <div class="pub-meta">
+              <span class="chip">Embeddings</span>
+              <span class="chip">Transformers</span>
+              <span class="chip">Low-resource NLP</span>
+              <a href="https://ieeexplore.ieee.org/abstract/document/10740448/" target="_blank" rel="noopener">IEEE Xplore →</a>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="nlp">
+            <p class="pub-year">2024</p>
+            <h3>Integrating Attention Mechanisms with LSTM for Azerbaijani Spelling Correction</h3>
+            <p class="authors">
+              <span class="author-self">Z. Rustamov</span>, E. Mammadli, I. Hasanli, H. Ismayilzada, S. Rustamov
+            </p>
+            <p class="venue">
+              International Conference on Modeling, Simulation and Optimization (Springer), pp. 534&ndash;547
+            </p>
+            <p class="abstract">
+              An LSTM-based Seq2Seq model with attention for Azerbaijani spelling correction. Trained on 92,500
+              sentence pairs from social media, the system reaches 97.4% accuracy on the test set and outperforms
+              existing tools on morphologically complex inputs.
+            </p>
+            <div class="pub-meta">
+              <span class="chip">LSTM</span>
+              <span class="chip">Seq2Seq</span>
+              <span class="chip">Attention</span>
+              <span class="chip">Azerbaijani</span>
+            </div>
+          </article>
+
+          <article class="pub" data-tags="nlp sentiment">
+            <p class="pub-year">2024</p>
+            <h3>Analysis of Public Sentiment in Azerbaijani News and Social Media</h3>
+            <p class="authors">
+              N. Guliyev, <span class="author-self">Z. Rustamov</span>, S. Rustamov
+            </p>
+            <p class="venue">
+              Proceedings of the International Conference on Computing, Machine Learning (ACM) &middot;
+              <span style="color:var(--accent)">cited 4&times;</span>
+            </p>
+            <p class="abstract">
+              Sentiment analysis across 38,000 social-media comments and 12,000 news articles in Azerbaijani.
+              Benchmarks BERT, GPT-3.5-Turbo, LSTM, SVM, and Logistic Regression with multiple vectorizers. SVM
+              consistently outperforms other models across both content types.
+            </p>
+            <div class="pub-meta">
+              <span class="chip">Sentiment</span>
+              <span class="chip">BERT</span>
+              <span class="chip">SVM</span>
+              <span class="chip">Azerbaijani</span>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>&copy; 2026 Zaid Rustamov</div>
+        <div><a href="mailto:rustamov.zaid@gmail.com">rustamov.zaid@gmail.com</a></div>
+      </div>
+    </footer>
+
+    <script src="../assets/script.js" defer></script>
+  </body>
+</html>

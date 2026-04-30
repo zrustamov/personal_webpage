@@ -3,94 +3,143 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | Zaid Rustamov</title>
+    <title>About &mdash; Zaid Rustamov</title>
+    <meta
+      name="description"
+      content="How I think about AI systems — engineering retrieval pipelines that survive contact with real data, and why I work on legal and Azerbaijani-language AI."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="canonical" href="about.html" />
+    <meta property="og:title" content="About — Zaid Rustamov" />
+    <meta property="og:description" content="How I think about AI systems and why I work on what I work on." />
+    <meta property="og:type" content="profile" />
+    <meta property="og:image" content="../assets/me.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="alternate" hreflang="en" href="about.html" />
+    <link rel="alternate" hreflang="az" href="about-az.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-inner">
+    <header class="site-header">
+      <div class="container site-header-inner">
         <a class="brand" href="../index.html">Zaid Rustamov</a>
-        <nav>
+        <nav class="primary-nav" aria-label="Primary">
           <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="cv.html">CV</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="skills.html">Skills</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="systems.html">How Systems Work</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="talks.html">Talks</a></li>
+            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a class="lang-toggle" href="about-az.html" hreflang="az">AZ</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main class="container">
-      <section class="card panel reveal">
-        <p class="kicker">About</p>
-        <h1>AI Engineer and Researcher</h1>
-        <p>
-          Zaid Rustamov is an AI Engineer at MegaSec AI Laboratory and a Researcher at the Center of Data Analytics
-          and Research at ADA University.
-        </p>
-      </section>
+    <main>
+      <div class="read">
+        <section class="hero reveal">
+          <p class="kicker">About</p>
+          <h1>How I think about AI systems</h1>
+          <p class="lede">
+            The interesting problem in applied AI is rarely the model. It&rsquo;s everything wrapped around it &mdash;
+            data pipelines, retrieval, evaluation, the failure modes nobody warned you about.
+          </p>
+          <p>
+            I&rsquo;m an AI Engineer at MegaSec AI Laboratory and a Researcher at the Center of Data Analytics and
+            Research at ADA University. I split my time between shipping legal AI systems that go into ministries and
+            studying the methods that make those systems hold up under real query distributions.
+          </p>
+          <p>
+            Most of my work involves Azerbaijani &mdash; a language with limited NLP resources, which forces a
+            different set of tradeoffs than the ones English-language AI literature usually optimises for. That
+            constraint has been one of the more productive ones in my career.
+          </p>
+        </section>
 
-      <section class="section grid-2 reveal delay-1">
-        <article class="card panel">
-          <h2>Background</h2>
-          <p>
-            He works on the design and deployment of advanced AI systems across legal, civic, and data-driven domains.
-            His expertise includes Natural Language Processing (NLP), Large Language Models (LLMs), and Generative AI,
-            with a focus on building scalable, production-grade systems and end-to-end AI pipelines. His work combines
-            research and engineering to develop robust solutions that perform effectively in real-world environments.
-          </p>
-        </article>
-        <article class="card panel">
-          <h2>What I Do</h2>
-          <ul class="list-clean">
-            <li>Build Retrieval-Augmented Generation (RAG) systems</li>
-            <li>Design multi-agent AI pipelines</li>
-            <li>Develop hybrid search systems (dense + sparse)</li>
-            <li>Optimize AI for low-resource languages (Azerbaijani)</li>
-            <li>Create production-ready AI architectures</li>
+        <section class="section reveal delay-1">
+          <p class="section-kicker">What I work on</p>
+          <ul class="plain">
+            <li>
+              <strong>Retrieval-Augmented Generation</strong> &mdash; hybrid dense and sparse indexes, fusion
+              strategies, LLM reranking. The kind of RAG that survives a domain shift.
+            </li>
+            <li>
+              <strong>Legal AI</strong> &mdash; building retrieval and grounded answer systems for legislative corpora,
+              starting with Azerbaijani law.
+            </li>
+            <li>
+              <strong>Multi-agent architectures</strong> &mdash; intent routing, specialist agents, evaluation
+              frameworks for agent quality.
+            </li>
+            <li>
+              <strong>Low-resource Azerbaijani NLP</strong> &mdash; embeddings, spelling correction, sentiment analysis.
+            </li>
           </ul>
-        </article>
-      </section>
+        </section>
 
-      <section class="section grid-2 reveal delay-2">
-        <article class="card panel">
-          <h2>Core Expertise</h2>
-          <ul class="list-clean">
-            <li>Legal AI Systems</li>
-            <li>Multi-Agent Architectures</li>
-            <li>Information Retrieval & Ranking</li>
-            <li>Natural Language Processing</li>
-            <li>AI System Design & Optimization</li>
-          </ul>
-        </article>
-        <article class="card panel">
-          <h2>Vision</h2>
+        <section class="section reveal delay-2">
+          <p class="section-kicker">How I work</p>
           <p>
-            I believe AI systems should not only perform well in controlled environments but also function reliably in
-            real-world conditions.
+            I write the evaluation set first. If I can&rsquo;t define what good retrieval looks like for a domain
+            before I touch a model, the project is going to drift. Once the eval is in place, the rest is mostly
+            measurement.
           </p>
           <p>
-            My goal is to build robust, interpretable, and scalable AI systems that improve access to information and
-            public services.
+            I prefer simple architectures that I can debug at 2am over clever ones I can&rsquo;t. Production systems
+            decay; the code that runs longest is the code I can read six months later.
           </p>
-        </article>
-      </section>
+          <p>
+            Research and engineering aren&rsquo;t separate tracks for me. The papers I&rsquo;ve published came out of
+            problems I hit while shipping &mdash; and the systems I&rsquo;ve shipped have benefited from methods I had
+            to read up on first.
+          </p>
+        </section>
+
+        <section class="section reveal delay-3">
+          <p class="section-kicker">Tools I rely on</p>
+          <div class="cluster">
+            <span class="chip">Python</span>
+            <span class="chip">FastAPI</span>
+            <span class="chip">Milvus</span>
+            <span class="chip">BGE-M3</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Linux</span>
+            <span class="chip">QLoRA / PEFT</span>
+            <span class="chip">Git / CI</span>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <p class="section-kicker">Beyond work</p>
+          <p>
+            I write occasionally about retrieval methods, engineering tradeoffs in production AI, and what it&rsquo;s
+            like to build NLP for a low-resource language. If you&rsquo;re working on something in this space, I&rsquo;d
+            be glad to hear about it.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Get in touch</a>
+            <a class="btn ghost" href="cv.html">View CV</a>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <footer>
-      <div class="container">© 2026 Zaid Rustamov • AI Engineer & Researcher</div>
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>&copy; 2026 Zaid Rustamov</div>
+        <div><a href="mailto:rustamov.zaid@gmail.com">rustamov.zaid@gmail.com</a></div>
+      </div>
     </footer>
-    <script src="../assets/script.js"></script>
+
+    <script src="../assets/script.js" defer></script>
   </body>
 </html>

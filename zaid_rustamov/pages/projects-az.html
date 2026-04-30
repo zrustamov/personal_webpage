@@ -1,1 +1,134 @@
-<!doctype html><html lang="az"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Layihələr | Zaid Rustamov</title><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="../assets/styles.css" /></head><body><header class="topbar"><div class="container topbar-inner"><a class="brand" href="../index-az.html">Zaid Rustamov</a><nav><ul><li><a href="../index-az.html">CV</a></li><li><a href="products-az.html">Məhsullar</a></li><li><a href="projects-az.html">Layihələr</a></li><li><a href="scientific-talks-az.html">Elmi məruzələr</a></li><li><a href="scientific-works-az.html">Elmi əsərlər</a></li><li><a href="teaching-az.html">Tədris fəaliyyəti</a></li><li><a class="lang-toggle" href="projects.html">🇬🇧 Eng</a></li></ul></nav></div></header><main class="container"><section class="card panel reveal"><p class="kicker">Layihələr</p><h1>Texniki Layihələr Portfeli</h1><p>Arxitektura, retrieval pipeline-ları və mühəndislik nəticələri.</p></section><section class="section reveal delay-1"><article class="card panel"><h2>E-Huquq – Hüquqi AI Sistemi</h2><p>Dense+sparse retrieval, RRF və reranking ilə qurulmuş hibrid RAG arxitekturası.</p></article></section></main><footer><div class="container">© 2026 Zaid Rustamov • AI Engineer & Researcher</div></footer><script src="../assets/script.js"></script></body></html>
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layihələr &mdash; Zaid Rustamov</title>
+    <meta
+      name="description"
+      content="Texniki layihə deep-dive-ları: arxitektura qərarları, retrieval pipeline-ları və istehsala verilmiş AI sistemlərinin arxasındakı mühəndislik tradeoff-ları."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="canonical" href="projects-az.html" />
+    <meta property="og:title" content="Layihələr — Zaid Rustamov" />
+    <meta property="og:description" content="Arxitektura qərarları və mühəndislik tradeoff-ları." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/me.jpg" />
+    <meta property="og:locale" content="az_AZ" />
+    <link rel="alternate" hreflang="az" href="projects-az.html" />
+    <link rel="alternate" hreflang="en" href="projects.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index-az.html">Zaid Rustamov</a>
+        <nav class="primary-nav" aria-label="Əsas naviqasiya">
+          <ul>
+            <li><a href="cv-az.html">CV</a></li>
+            <li><a href="projects-az.html">Layihələr</a></li>
+            <li><a href="publications-az.html">Nəşrlər</a></li>
+            <li><a href="talks-az.html">Məruzələr</a></li>
+            <li><a href="teaching-az.html">Tədris</a></li>
+            <li><a href="consulting-az.html">Konsultasiya</a></li>
+            <li><a href="contact-az.html">Əlaqə</a></li>
+            <li><a class="lang-toggle" href="projects.html" hreflang="en">EN</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <section class="hero reveal">
+          <p class="kicker">Layihələr</p>
+          <h1>Mühəndislik deep-dive-ları</h1>
+          <p class="lede">
+            Arxitektura qərarları, retrieval pipeline-ları, failure mode-lar və növbəti dəfə nəyi dəyişdirərdim.
+            Göndərdiyim sistemlərin arxasındakı mühəndislik qeydləri.
+          </p>
+        </section>
+
+        <section class="section reveal delay-1">
+          <article class="case">
+            <div class="case-meta">Retrieval arxitekturası</div>
+            <h3>Azərbaycan hüquqi QA üçün hibrid retrieval pipeline-ı</h3>
+            <p>
+              E-Huquq-un ilk iterasiyası yalnız dense retrieval istifadə edirdi. Səlis idi və səhv. Hüquqi sorğular
+              dəqiq terminlərdən asılıdır (maddə nömrələri, qanunların adları) ki, semantik retrieval onları sevə-sevə
+              parafraza edir.
+            </p>
+            <p>
+              Düzəliş: eyni korpus üzərində paralel sparse indeksi və hər iki siqnalı qoruyan birləşmə mərhələsi.
+              Reciprocal Rank Fusion möhkəm default verdi; top-namizədlər üzərində LLM reranking mərhələsi
+              &ldquo;yaxşı sənəd top-50-dədir&rdquo; ilə &ldquo;yaxşı sənəd 1-ci sıradadır&rdquo; arasındakı boşluğu
+              qapatdı.
+            </p>
+            <p>
+              Dərs, yenidən: lüğətin yük daşıdığı domenlərdə sparse retrieval köhnə deyil.
+            </p>
+            <div class="cluster stack">
+              <span class="chip">BGE-M3</span>
+              <span class="chip">BM25</span>
+              <span class="chip">Milvus</span>
+              <span class="chip">RRF</span>
+              <span class="chip">LLM Reranker</span>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-meta">NLU + qraf</div>
+            <h3>Metro Bot &mdash; stansiya qrafı üzərində marşrut planlama</h3>
+            <p>
+              Əsasən qraf gəzişməsi olan problem üçün xalis ML lazımsızdır. Bakı Metrosu kiçik qrafdır; BFS optimal
+              marşrutları verir. Maraqlı iş yuxarı axındadır: ingilis/azərbaycan transliterasiyalarından səhv yazılmış
+              stansiya adlarını həll etmək, danışıq adlarını idarə etmək və insan kimi səslənən mərhələli istiqamətlər
+              vermək.
+            </p>
+            <div class="cluster stack">
+              <span class="chip">BFS</span>
+              <span class="chip">Fuzzy Matching</span>
+              <span class="chip">NLU</span>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-meta">Az-resurslu Azərbaycan NLP</div>
+            <h3>LSTM + attention ilə orfoqrafik düzəliş</h3>
+            <p>
+              Azərbaycan dilində sosial-media mətnlərindəki orfoqrafik səhvlər proqnozlaşdırıla bilən nümunələri
+              izləyir &mdash; sait substitusiyaları, çatışmayan diakritiklər, suffiks çökməsi. 92,500 cümlə cütü
+              üzərində təlim keçən attention-lı Seq2Seq LSTM 97.4% dəqiqliyə çatdı və morfologiyanı yaxşı idarə
+              etməyən hazır düzəliş alətlərini üstələdi.
+            </p>
+            <p>
+              ICMSO 2024-də <em>Integrating Attention Mechanisms with LSTM for Azerbaijani Spelling Correction</em>
+              kimi nəşr edilib.
+            </p>
+            <div class="cluster stack">
+              <span class="chip">LSTM</span>
+              <span class="chip">Seq2Seq</span>
+              <span class="chip">Attention</span>
+              <span class="chip">Azərbaycan</span>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>&copy; 2026 Zaid Rustamov</div>
+        <div><a href="mailto:rustamov.zaid@gmail.com">rustamov.zaid@gmail.com</a></div>
+      </div>
+    </footer>
+
+    <script src="../assets/script.js" defer></script>
+  </body>
+</html>

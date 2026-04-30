@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Profile photo placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef4f2"/>
+      <stop offset="100%" stop-color="#d7ebe6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bg)"/>
+  <circle cx="200" cy="200" r="70" fill="#b6ccc8"/>
+  <path d="M80 440 C80 360 140 320 200 320 C260 320 320 360 320 440 Z" fill="#b6ccc8"/>
+  <text x="200" y="480" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" fill="#46606b">Zaid Rustamov</text>
+</svg>

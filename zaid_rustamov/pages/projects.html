@@ -3,71 +3,130 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects | Zaid Rustamov</title>
+    <title>Projects &mdash; Zaid Rustamov</title>
+    <meta
+      name="description"
+      content="Technical project deep-dives: architecture decisions, retrieval pipelines, and engineering tradeoffs behind shipped AI systems."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="canonical" href="projects.html" />
+    <meta property="og:title" content="Projects — Zaid Rustamov" />
+    <meta property="og:description" content="Architecture decisions and engineering tradeoffs." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/me.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="alternate" hreflang="en" href="projects.html" />
+    <link rel="alternate" hreflang="az" href="projects-az.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-inner">
+    <header class="site-header">
+      <div class="container site-header-inner">
         <a class="brand" href="../index.html">Zaid Rustamov</a>
-        <nav>
+        <nav class="primary-nav" aria-label="Primary">
           <ul>
-            <li><a href="../index.html">CV</a></li>
-            <li><a href="products.html">Products</a></li>
+            <li><a href="cv.html">CV</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="scientific-talks.html">Talks</a></li>
-            <li><a href="scientific-works.html">Publications</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="talks.html">Talks</a></li>
             <li><a href="teaching.html">Teaching</a></li>
-            <li><a class="lang-toggle" href="projects-az.html">🇦🇿 Az</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a class="lang-toggle" href="projects-az.html" hreflang="az">AZ</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main class="container">
-      <section class="card panel reveal">
-        <p class="kicker">Projects</p>
-        <h1>Technical Project Portfolio</h1>
-        <p>Architecture, retrieval pipelines, deployment choices, and engineering outcomes.</p>
-      </section>
-
-      <section class="section reveal delay-1">
-        <article class="card panel">
-          <h2>E-Huquq – Legal AI System</h2>
-          <p>
-            Hybrid RAG architecture using dense and sparse retrieval, Reciprocal Rank Fusion, and reranking for legal
-            QA in Azerbaijani.
+    <main>
+      <div class="container">
+        <section class="hero reveal">
+          <p class="kicker">Projects</p>
+          <h1>Engineering deep-dives</h1>
+          <p class="lede">
+            Architecture decisions, retrieval pipelines, failure modes, and what I&rsquo;d change next time.
+            Engineering write-ups behind the systems I&rsquo;ve shipped.
           </p>
-          <div class="project-meta">
-            <span class="chip">BGE-M3</span>
-            <span class="chip">Milvus</span>
-            <span class="chip">FastAPI</span>
-            <span class="chip">LLM APIs</span>
-          </div>
-        </article>
-      </section>
+        </section>
 
-      <section class="section grid-2 reveal delay-2">
-        <article class="card panel">
-          <h2>E-Polis</h2>
-          <p>Intent classification, service routing, and structured response generation for citizen support.</p>
-        </article>
-        <article class="card panel">
-          <h2>Metro Bot</h2>
-          <p>BFS-based route computation with natural language understanding and step-wise guidance.</p>
-        </article>
-      </section>
+        <section class="section reveal delay-1">
+          <article class="case">
+            <div class="case-meta">Retrieval architecture</div>
+            <h3>Hybrid retrieval pipeline for Azerbaijani legal QA</h3>
+            <p>
+              The first iteration of E-Huquq used dense retrieval alone. It was fluent and wrong. Legal queries hinge
+              on exact terms (article numbers, statute names) that semantic retrieval will happily paraphrase away.
+            </p>
+            <p>
+              The fix was a parallel sparse index over the same corpus and a fusion step that preserved both signals.
+              Reciprocal Rank Fusion gave a robust default; an LLM reranking pass on the top candidates closed the gap
+              between &ldquo;a good document is in the top-50&rdquo; and &ldquo;a good document is at rank 1.&rdquo;
+            </p>
+            <p>
+              The lesson, restated: in domains where vocabulary is load-bearing, sparse retrieval is not legacy.
+            </p>
+            <div class="cluster stack">
+              <span class="chip">BGE-M3</span>
+              <span class="chip">BM25</span>
+              <span class="chip">Milvus</span>
+              <span class="chip">RRF</span>
+              <span class="chip">LLM Reranker</span>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-meta">NLU + graph</div>
+            <h3>Metro Bot &mdash; route planning over a station graph</h3>
+            <p>
+              Pure ML overkill for a problem that&rsquo;s mostly graph traversal. The Baku Metro is a small graph; BFS
+              gives optimal routes. The interesting work was upstream: resolving misspelled station names from
+              English/Azerbaijani transliterations, handling colloquial nicknames, and producing step-wise directions
+              that read like a person wrote them.
+            </p>
+            <div class="cluster stack">
+              <span class="chip">BFS</span>
+              <span class="chip">Fuzzy Matching</span>
+              <span class="chip">NLU</span>
+            </div>
+          </article>
+
+          <article class="case">
+            <div class="case-meta">NLP for low-resource Azerbaijani</div>
+            <h3>Spelling correction with LSTM + attention</h3>
+            <p>
+              Azerbaijani spelling errors in social-media text follow predictable patterns &mdash; vowel substitutions,
+              missing diacritics, suffix collapse. A Seq2Seq LSTM with attention, trained on 92,500 sentence pairs,
+              reached 97.4% accuracy and outperformed off-the-shelf correction tools that don&rsquo;t handle the
+              morphology well.
+            </p>
+            <p>
+              Published as <em>Integrating Attention Mechanisms with LSTM for Azerbaijani Spelling Correction</em> at
+              ICMSO 2024.
+            </p>
+            <div class="cluster stack">
+              <span class="chip">LSTM</span>
+              <span class="chip">Seq2Seq</span>
+              <span class="chip">Attention</span>
+              <span class="chip">Azerbaijani</span>
+            </div>
+          </article>
+        </section>
+      </div>
     </main>
 
-    <footer>
-      <div class="container">© 2026 Zaid Rustamov • AI Engineer & Researcher</div>
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>&copy; 2026 Zaid Rustamov</div>
+        <div><a href="mailto:rustamov.zaid@gmail.com">rustamov.zaid@gmail.com</a></div>
+      </div>
     </footer>
-    <script src="../assets/script.js"></script>
+
+    <script src="../assets/script.js" defer></script>
   </body>
 </html>

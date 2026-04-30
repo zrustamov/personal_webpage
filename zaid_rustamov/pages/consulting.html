@@ -3,61 +3,157 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Consulting | Zaid Rustamov</title>
+    <title>Consulting &mdash; Zaid Rustamov</title>
+    <meta
+      name="description"
+      content="AI consulting for legal-tech and public-sector teams — RAG architecture, retrieval evaluation, LLM integration, and production deployment."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="canonical" href="consulting.html" />
+    <meta property="og:title" content="Consulting — Zaid Rustamov" />
+    <meta property="og:description" content="AI consulting for legal-tech and public-sector teams." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="../assets/me.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="alternate" hreflang="en" href="consulting.html" />
+    <link rel="alternate" hreflang="az" href="consulting-az.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../assets/styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="container topbar-inner">
+    <header class="site-header">
+      <div class="container site-header-inner">
         <a class="brand" href="../index.html">Zaid Rustamov</a>
-        <nav>
+        <nav class="primary-nav" aria-label="Primary">
           <ul>
-            <li><a href="../index.html">CV</a></li>
-            <li><a href="products.html">Products</a></li>
+            <li><a href="cv.html">CV</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="scientific-talks.html">Talks</a></li>
-            <li><a href="scientific-works.html">Publications</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="talks.html">Talks</a></li>
             <li><a href="teaching.html">Teaching</a></li>
-            <li><a class="lang-toggle" href="consulting-az.html">🇦🇿 Az</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a class="lang-toggle" href="consulting-az.html" hreflang="az">AZ</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main class="container">
-      <section class="card panel reveal">
-        <p class="kicker">AI Consulting</p>
-        <h1>Consulting Services</h1>
-        <p>Strategic and technical consulting for AI systems in legal, civic, and enterprise contexts.</p>
-      </section>
+    <main>
+      <div class="read">
+        <section class="hero reveal">
+          <p class="kicker">Consulting</p>
+          <h1>RAG that holds up in production</h1>
+          <p class="lede">
+            I help legal-tech and public-sector teams ship retrieval systems that work past the demo &mdash; through
+            architecture review, hands-on engineering, or as a retained advisor.
+          </p>
+          <p>
+            Most teams I talk to have a working prototype that&rsquo;s wrong in ways they can&rsquo;t measure. The
+            first deliverable is usually an evaluation set and a measurement loop. After that, the engineering work
+            has somewhere to land.
+          </p>
+        </section>
 
-      <section class="section grid-2 reveal delay-1">
-        <article class="card panel">
-          <h2>What I Support</h2>
-          <ul class="list-clean">
-            <li>RAG system architecture and evaluation design</li>
-            <li>LLM integration and production deployment planning</li>
-            <li>Hybrid retrieval and reranking optimization</li>
-            <li>Multi-agent pipeline design for real-world workloads</li>
+        <section class="section reveal delay-1">
+          <p class="section-kicker">What I help with</p>
+          <ul class="plain">
+            <li>
+              <strong>RAG architecture review</strong> &mdash; retrieval design, chunking strategy, fusion,
+              reranking, evaluation harnesses.
+            </li>
+            <li>
+              <strong>LLM integration &amp; production deployment</strong> &mdash; serving, latency budgets,
+              fallbacks, and the operational layer most projects neglect.
+            </li>
+            <li>
+              <strong>Hybrid retrieval &amp; reranking optimization</strong> &mdash; for domains where vocabulary is
+              load-bearing (legal, medical, technical).
+            </li>
+            <li>
+              <strong>Multi-agent pipeline design</strong> &mdash; intent routing, specialist agents, evaluation for
+              agent quality.
+            </li>
+            <li>
+              <strong>Low-resource NLP</strong> &mdash; pretraining, fine-tuning, and data strategy for
+              under-resourced languages.
+            </li>
           </ul>
-        </article>
-        <article class="card panel">
-          <h2>Engagement Focus</h2>
-          <p>From initial architecture review to implementation guidance and performance improvement.</p>
-          <a class="btn primary" href="mailto:rustamov.zaid@gmail.com">Request a Consultation</a>
-        </article>
-      </section>
+        </section>
+
+        <section class="section reveal delay-2">
+          <p class="section-kicker">Engagement formats</p>
+          <div class="grid-2">
+            <div>
+              <h3>Architecture review</h3>
+              <p class="muted">
+                One to two weeks. Deliverable is a written audit of the current system, a prioritised list of changes,
+                and an evaluation plan you can run yourself.
+              </p>
+            </div>
+            <div>
+              <h3>Project lead</h3>
+              <p class="muted">
+                Hands-on involvement for a defined scope &mdash; typically rebuilding a retrieval pipeline or shipping
+                a new RAG system from scratch with your team.
+              </p>
+            </div>
+            <div>
+              <h3>Retained advisor</h3>
+              <p class="muted">
+                Monthly engagement. Standing time for design review, code review on critical paths, and being the
+                second pair of eyes when things break in production.
+              </p>
+            </div>
+            <div>
+              <h3>Workshop / training</h3>
+              <p class="muted">
+                Two to three days, on-site or remote. RAG fundamentals, evaluation design, or hybrid retrieval &mdash;
+                aimed at engineering teams.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section reveal delay-3">
+          <p class="section-kicker">When this works best</p>
+          <p>
+            Teams shipping AI into regulated or high-stakes domains. Teams whose retrieval quality matters more than
+            their model choice. Teams working in a language other than English.
+          </p>
+          <p class="muted">
+            If you&rsquo;re still in the &ldquo;is this even possible?&rdquo; phase, I&rsquo;m probably the wrong
+            person &mdash; you want a prototyper. If you have a system that needs to be reliable, that&rsquo;s where
+            I&rsquo;m useful.
+          </p>
+        </section>
+
+        <section class="section reveal">
+          <h2>Get in touch</h2>
+          <p>
+            Send a short note about your system, your domain, and what you&rsquo;re stuck on. I&rsquo;ll respond
+            within a few days.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="mailto:rustamov.zaid@gmail.com?subject=Consulting%20enquiry">Email me</a>
+            <a class="btn ghost" href="contact.html">All contact details</a>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <footer>
-      <div class="container">© 2026 Zaid Rustamov • AI Engineer & Researcher</div>
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>&copy; 2026 Zaid Rustamov</div>
+        <div><a href="mailto:rustamov.zaid@gmail.com">rustamov.zaid@gmail.com</a></div>
+      </div>
     </footer>
-    <script src="../assets/script.js"></script>
+
+    <script src="../assets/script.js" defer></script>
   </body>
 </html>

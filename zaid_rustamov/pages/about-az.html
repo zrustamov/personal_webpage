@@ -3,16 +3,142 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Haqqımda | Zaid Rustamov</title>
+    <title>Haqqımda &mdash; Zaid Rustamov</title>
+    <meta
+      name="description"
+      content="AI sistemləri haqqında necə düşünürəm — real data ilə qarşılaşanda dağılmayan retrieval pipeline-ları və niyə hüquqi və Azərbaycan dilində AI üzərində işləyirəm."
+    />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <link rel="canonical" href="about-az.html" />
+    <meta property="og:title" content="Haqqımda — Zaid Rustamov" />
+    <meta property="og:description" content="AI sistemləri haqqında necə düşünürəm və niyə bu işlər üzərində çalışıram." />
+    <meta property="og:type" content="profile" />
+    <meta property="og:image" content="../assets/me.jpg" />
+    <meta property="og:locale" content="az_AZ" />
+    <link rel="alternate" hreflang="az" href="about-az.html" />
+    <link rel="alternate" hreflang="en" href="about.html" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../assets/styles.css" />
   </head>
   <body>
-    <header class="topbar"><div class="container topbar-inner"><a class="brand" href="../index-az.html">Zaid Rustamov</a><nav><ul><li><a href="../index-az.html">CV</a></li><li><a href="products-az.html">Məhsullar</a></li><li><a href="projects-az.html">Layihələr</a></li><li><a href="scientific-talks-az.html">Elmi məruzələr</a></li><li><a href="scientific-works-az.html">Elmi əsərlər</a></li><li><a href="teaching-az.html">Tədris fəaliyyəti</a></li><li><a class="lang-toggle" href="about.html">🇬🇧 Eng</a></li></ul></nav></div></header>
-    <main class="container"><section class="card panel reveal"><p class="kicker">Haqqımda</p><h1>Süni intellekt mühəndisi və tədqiqatçı</h1><p>Zaid Rustamov MegaSec AI Laboratoriyasında Süni İntellekt mühəndisi və ADA Üniversitetinin nəznində olan Data Analitikası və Təqdiqat Mərkəzində təqdiqatçı kimi fəaliyyət göstərir.</p><p>O, hüquqi, ictimai və data əsaslı sahələrdə qabaqcıl AI sistemlərinin dizaynı və tətbiqi üzərində çalışır. Onun ixtisas sahələri NLP, LLM və Generative AI-dir. Əsas fokus sahəsi isə skalyasiya olunan, production-grade sistemlər və end-to-end AI pipeline-larının qurulmasıdır.</p></section></main>
-    <footer><div class="container">© 2026 Zaid Rustamov • AI Engineer & Researcher</div></footer>
-    <script src="../assets/script.js"></script>
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="../index-az.html">Zaid Rustamov</a>
+        <nav class="primary-nav" aria-label="Əsas naviqasiya">
+          <ul>
+            <li><a href="cv-az.html">CV</a></li>
+            <li><a href="projects-az.html">Layihələr</a></li>
+            <li><a href="publications-az.html">Nəşrlər</a></li>
+            <li><a href="talks-az.html">Məruzələr</a></li>
+            <li><a href="teaching-az.html">Tədris</a></li>
+            <li><a href="consulting-az.html">Konsultasiya</a></li>
+            <li><a href="contact-az.html">Əlaqə</a></li>
+            <li><a class="lang-toggle" href="about.html" hreflang="en">EN</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="read">
+        <section class="hero reveal">
+          <p class="kicker">Haqqımda</p>
+          <h1>AI sistemləri haqqında necə düşünürəm</h1>
+          <p class="lede">
+            Tətbiqi AI-da maraqlı problem nadir hallarda modeldir. O modelin ətrafındakı hər şeydir &mdash; data
+            pipeline-ları, retrieval, qiymətləndirmə, heç kimin sizi xəbərdar etmədiyi failure mode-lar.
+          </p>
+          <p>
+            MegaSec AI Laboratoriyasında Süni İntellekt mühəndisi və ADA Universitetinin nəzdində olan Data
+            Analitikası və Tədqiqat Mərkəzində tədqiqatçıyam. Vaxtımın bir hissəsini nazirliklərə gedən hüquqi AI
+            sistemləri qurmağa, digər hissəsini isə bu sistemləri real sorğu paylanmaları altında dayanıqlı saxlayan
+            metodları öyrənməyə sərf edirəm.
+          </p>
+          <p>
+            İşlərimin əksəriyyəti Azərbaycan dili ilə bağlıdır &mdash; məhdud NLP resursları olan dil. Bu vəziyyət
+            ingilisdilli AI ədəbiyyatının optimizə etdiyi tradeoff-lardan fərqli bir trade-off setini tələb edir. Bu
+            məhdudiyyət karyeramda ən məhsuldarlardan biri olub.
+          </p>
+        </section>
+
+        <section class="section reveal delay-1">
+          <p class="section-kicker">Nə üzərində işləyirəm</p>
+          <ul class="plain">
+            <li>
+              <strong>Retrieval-Augmented Generation</strong> &mdash; hibrid dense və sparse indekslər, fusion
+              strategiyaları, LLM reranking. Domen dəyişikliklərinə davamlı RAG.
+            </li>
+            <li>
+              <strong>Hüquqi AI</strong> &mdash; qanunverici korpuslar üçün retrieval və əsaslandırılmış cavab
+              sistemləri, ilk addım Azərbaycan qanunvericiliyi.
+            </li>
+            <li>
+              <strong>Çox-agent arxitekturalar</strong> &mdash; intent yönləndirmə, ixtisaslaşmış agentlər, agent
+              keyfiyyəti üçün qiymətləndirmə çərçivələri.
+            </li>
+            <li>
+              <strong>Az-resurslu Azərbaycan NLP</strong> &mdash; embedding-lər, orfoqrafik düzəliş, sentiment analizi.
+            </li>
+          </ul>
+        </section>
+
+        <section class="section reveal delay-2">
+          <p class="section-kicker">Necə işləyirəm</p>
+          <p>
+            Əvvəlcə qiymətləndirmə setini yazıram. Modelə toxunmadan əvvəl bir domen üçün yaxşı retrieval-ın necə
+            göründüyünü təyin edə bilmirəmsə, layihə dreyf edəcək. Eval yerindədirsə, qalanı əsasən ölçmədir.
+          </p>
+          <p>
+            Anlaya bilməyəcəyim ağıllı arxitekturalardansa, gecə 2-də debug edə biləcəyim sadə arxitekturalara
+            üstünlük verirəm. Production sistemlər zamanla pisləşir; ən uzun yaşayan kod altı ay sonra oxuya
+            biləcəyim koddur.
+          </p>
+          <p>
+            Tədqiqat və mühəndislik mənim üçün ayrı yollar deyil. Çap etdiyim məqalələr göndərmə zamanı qarşılaşdığım
+            problemlərdən doğub &mdash; göndərdiyim sistemlər də əvvəlcə oxumalı olduğum metodlardan faydalanıb.
+          </p>
+        </section>
+
+        <section class="section reveal delay-3">
+          <p class="section-kicker">İstifadə etdiyim alətlər</p>
+          <div class="cluster">
+            <span class="chip">Python</span>
+            <span class="chip">FastAPI</span>
+            <span class="chip">Milvus</span>
+            <span class="chip">BGE-M3</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Linux</span>
+            <span class="chip">QLoRA / PEFT</span>
+            <span class="chip">Git / CI</span>
+          </div>
+        </section>
+
+        <section class="section reveal">
+          <p class="section-kicker">İşdən kənar</p>
+          <p>
+            Retrieval metodları, production AI-da mühəndislik tradeoff-ları və az-resurslu dil üçün NLP qurmağın necə
+            olduğu haqqında zaman-zaman yazıram. Bu sahədə işləyirsinizsə, eşitməkdən məmnun olaram.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="contact-az.html">Əlaqə</a>
+            <a class="btn ghost" href="cv-az.html">CV-ni gör</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer-inner">
+        <div>&copy; 2026 Zaid Rustamov</div>
+        <div><a href="mailto:rustamov.zaid@gmail.com">rustamov.zaid@gmail.com</a></div>
+      </div>
+    </footer>
+
+    <script src="../assets/script.js" defer></script>
   </body>
 </html>
