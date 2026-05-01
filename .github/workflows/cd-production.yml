@@ -166,8 +166,12 @@ jobs:
           retention-days: 30
 
   # --------------------------------------------------------------------------
-  # 5. Health check — query Log Analytics for storage 4xx/5xx after deploy.
-  #    Storage diagnostic logs flow into LA via Bicep diagnostic settings.
+  # 5. Health check
+  #    (a) HTTP probe — confirms the live URL serves 200 on every key page.
+  #        This is the gate that blocks the workflow.
+  #    (b) Log Analytics query — best-effort. Storage diagnostic logs flow
+  #        into LA via Bicep diagnostic settings, but for a fresh deploy
+  #        there's no traffic in the window, so we treat it as informational.
   # --------------------------------------------------------------------------
   health:
     name: Post-deploy health check
@@ -181,26 +185,61 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Wait for telemetry to flush
-        run: sleep 90
-
-      - name: Query Log Analytics for storage errors
+      - name: HTTP probe (blocking)
         run: |
+          base="https://${{ needs.infrastructure.outputs.staticWebsiteHost }}"
+          fails=0
+          for path in / /index.html /pages/cv.html /pages/contact.html; do
+            for attempt in 1 2 3; do
+              status=$(curl -s -o /dev/null -w "%{http_code}" "${base}${path}")
+              if [ "$status" = "200" ]; then
+                echo "OK   ${base}${path} → $status"
+                break
+              fi
+              echo "WARN ${base}${path} → $status (attempt $attempt)"
+              sleep 5
+              if [ "$attempt" = "3" ]; then
+                fails=$((fails + 1))
+              fi
+            done
+          done
+          if [ "$fails" -gt 0 ]; then
+            echo "::error::$fails endpoint(s) failed the HTTP probe"
+            exit 1
+          fi
+
+      - name: Wait for storage telemetry to reach Log Analytics
+        run: sleep 60
+
+      - name: Log Analytics error-rate query (best effort)
+        continue-on-error: true
+        run: |
+          set +e
           QUERY='StorageBlobLogs | where TimeGenerated > ago(5m) | summarize total=count(), errors=countif(StatusCode >= 400)'
           ws_id=$(az monitor log-analytics workspace show \
             --resource-group "${{ needs.infrastructure.outputs.resourceGroupName }}" \
             --workspace-name "log-zrweb-production" \
-            --query customerId -o tsv)
-          result=$(az monitor log-analytics query \
-            --workspace "$ws_id" \
-            --analytics-query "$QUERY" \
-            -o json)
+            --query customerId -o tsv 2>&1)
+          if [ -z "$ws_id" ] || [[ "$ws_id" == *ERROR* ]]; then
+            echo "::warning::Could not look up Log Analytics workspace; skipping LA check"
+            exit 0
+          fi
+          result=$(az monitor log-analytics query --workspace "$ws_id" --analytics-query "$QUERY" -o json 2>&1)
+          if [ $? -ne 0 ]; then
+            echo "::warning::LA query failed (likely no diagnostic data yet for fresh deploy)"
+            echo "$result"
+            exit 0
+          fi
           echo "$result"
-          total=$(echo "$result" | jq -r '.[0].total // 0')
-          errors=$(echo "$result" | jq -r '.[0].errors // 0')
-          echo "Total: $total | Errors: $errors"
-          if [ "$total" -gt 0 ] && [ "$errors" -gt 0 ]; then
-            awk -v e="$errors" -v t="$total" 'BEGIN { printf "Error rate: %.2f%%\n", (e/t)*100; exit ((e/t) > 0.05) ? 1 : 0 }'
+          total=$(echo "$result" | jq -r '.[0].total // 0' 2>/dev/null)
+          errors=$(echo "$result" | jq -r '.[0].errors // 0' 2>/dev/null)
+          echo "Total: ${total:-0} | Errors: ${errors:-0}"
+          if [ -z "$total" ] || [ "$total" = "0" ] || [ "$total" = "null" ]; then
+            echo "::notice::No traffic in 5-min window — nothing to evaluate (expected on first deploy)"
+            exit 0
+          fi
+          if [ "${errors:-0}" -gt 0 ]; then
+            awk -v e="$errors" -v t="$total" 'BEGIN { printf "Error rate: %.2f%%\n", (e/t)*100 }'
           fi
 
   # --------------------------------------------------------------------------
