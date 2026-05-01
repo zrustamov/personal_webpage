@@ -1,6 +1,6 @@
 :root {
   --bg: #fbfaf6;
-  --surface: #ffffff;
+  --surface: #fff;
   --text: #0f1a1f;
   --muted: #56676f;
   --faint: #8a9aa0;
@@ -36,7 +36,7 @@ body {
 }
 
 body {
-  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 17px;
   line-height: 1.65;
   color: var(--text);
@@ -286,14 +286,14 @@ hr {
 
 .btn.primary {
   background: var(--accent);
-  color: #ffffff;
+  color: #fff;
   border-color: var(--accent);
 }
 
 .btn.primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  color: #ffffff;
+  color: #fff;
 }
 
 .btn.ghost {
@@ -638,7 +638,7 @@ main {
 .filters button.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #ffffff;
+  color: #fff;
 }
 
 /* ─── Publication entry ───────────────────────────── */
@@ -806,8 +806,8 @@ main {
   }
 
   body {
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
     font-size: 11pt;
     line-height: 1.45;
   }

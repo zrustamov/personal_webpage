@@ -1,11 +1,12 @@
 // ----------------------------------------------------------------------------
 // Workload module — runs at resource-group scope.
 //
-// Provisions:
+// Provisions, per environment:
 //   - Log Analytics workspace
 //   - Application Insights (workspace-based)
-//   - Azure Static Web App
-//   - Optional custom domain binding
+//   - Storage Account (the actual hosting layer; static-website mode is
+//     enabled by the CD workflow as a one-shot data-plane call)
+//   - Diagnostic settings on the storage account → Log Analytics
 // ----------------------------------------------------------------------------
 
 @description('Logical environment name.')
@@ -17,18 +18,18 @@ param projectName string
 @description('Azure region for all resources.')
 param location string
 
-@description('Static Web App SKU.')
-param swaSku string
-
-@description('Optional custom domain. Empty string skips the binding.')
-param customDomain string
-
 @description('Tags applied to all resources.')
 param tags object
 
-var swaName = 'swa-${projectName}-${environmentName}'
+// Storage account names: 3-24 chars, lowercase + digits only.
+// "st<project><env>" → e.g. stzrwebstaging / stzrwebproduction.
+var storageAccountName = toLower('st${projectName}${environmentName}')
 var laName = 'log-${projectName}-${environmentName}'
 var aiName = 'appi-${projectName}-${environmentName}'
+
+// --------------------------------------------------------------------------
+// Observability — Log Analytics + Application Insights
+// --------------------------------------------------------------------------
 
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: laName
@@ -56,42 +57,74 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-resource staticWebApp 'Microsoft.Web/staticSites@2023-12-01' = {
-  name: swaName
+// --------------------------------------------------------------------------
+// Hosting — Storage Account
+// --------------------------------------------------------------------------
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+  name: storageAccountName
   location: location
   tags: tags
   sku: {
-    name: swaSku
-    tier: swaSku
+    // LRS in non-prod, ZRS in prod for higher durability.
+    name: environmentName == 'production' ? 'Standard_ZRS' : 'Standard_LRS'
   }
+  kind: 'StorageV2'
   properties: {
-    // The repository fields are intentionally omitted — deployment is driven
-    // by GitHub Actions using the deployment token, not by SWA's built-in
-    // repo integration.
-    stagingEnvironmentPolicy: 'Enabled'
-    allowConfigFileUpdates: true
-    provider: 'GitHub'
-    enterpriseGradeCdnStatus: 'Disabled'
+    accessTier: 'Hot'
+    allowBlobPublicAccess: true
+    minimumTlsVersion: 'TLS1_2'
+    supportsHttpsTrafficOnly: true
+    publicNetworkAccess: 'Enabled'
+    networkAcls: {
+      defaultAction: 'Allow'
+      bypass: 'AzureServices'
+    }
   }
 }
 
-resource swaAppInsightsBinding 'Microsoft.Web/staticSites/config@2023-12-01' = {
-  name: 'appsettings'
-  parent: staticWebApp
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2023-05-01' = {
+  name: 'default'
+  parent: storageAccount
   properties: {
-    APPLICATIONINSIGHTS_CONNECTION_STRING: appInsights.properties.ConnectionString
+    cors: {
+      corsRules: []
+    }
   }
 }
 
-resource swaCustomDomain 'Microsoft.Web/staticSites/customDomains@2023-12-01' = if (!empty(customDomain)) {
-  name: customDomain
-  parent: staticWebApp
+// Static-website mode itself (and the $web container) is enabled as a
+// one-shot data-plane call by the CD workflow:
+//   az storage blob service-properties update --static-website ...
+
+// --------------------------------------------------------------------------
+// Diagnostic settings — storage HTTP logs → Log Analytics, so the
+// post-deploy health workflow can query the 4xx/5xx rate.
+// --------------------------------------------------------------------------
+
+resource blobDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+  scope: blobService
+  name: 'blob-to-loganalytics'
   properties: {
-    validationMethod: 'cname-delegation'
+    workspaceId: logAnalytics.id
+    logs: [
+      { category: 'StorageRead',   enabled: true }
+      { category: 'StorageWrite',  enabled: true }
+      { category: 'StorageDelete', enabled: true }
+    ]
+    metrics: [
+      { category: 'Transaction', enabled: true }
+    ]
   }
 }
 
-output staticWebAppName string = staticWebApp.name
-output staticWebAppDefaultHostname string = staticWebApp.properties.defaultHostname
+// --------------------------------------------------------------------------
+// Outputs — consumed by the deployment workflows.
+// --------------------------------------------------------------------------
+
+output storageAccountName string = storageAccount.name
+output staticWebsiteHost string = replace(replace(storageAccount.properties.primaryEndpoints.web, 'https://', ''), '/', '')
+output appInsightsName string = appInsights.name
 output appInsightsConnectionString string = appInsights.properties.ConnectionString
-output logAnalyticsWorkspaceId string = logAnalytics.id
+output logAnalyticsWorkspaceId string = logAnalytics.properties.customerId
+output logAnalyticsResourceId string = logAnalytics.id

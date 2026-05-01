@@ -1,13 +1,16 @@
 // ----------------------------------------------------------------------------
-// Personal webpage — Azure infrastructure
+// Personal webpage — Azure infrastructure (subscription-scoped entry point)
 //
-// Provisions an Azure Static Web App per environment, a Log Analytics
-// workspace, and an Application Insights resource wired to the SWA for
-// post-deploy monitoring.
+// Provisions, per environment:
+//   - Resource group
+//   - Storage Account (static-website hosting)
+//   - Log Analytics workspace
+//   - Application Insights
+//   - Storage diagnostic settings → Log Analytics
 //
 // Deploy:
 //   az deployment sub create \
-//     --location westeurope \
+//     --location swedencentral \
 //     --template-file infrastructure/main.bicep \
 //     --parameters infrastructure/parameters/staging.bicepparam
 // ----------------------------------------------------------------------------
@@ -21,21 +24,11 @@ targetScope = 'subscription'
 ])
 param environmentName string
 
-@description('Azure region for all resources.')
-param location string = 'westeurope'
+@description('Azure region for all resources. Constrained by the subscription policy.')
+param location string = 'swedencentral'
 
 @description('Short project slug used in resource names.')
 param projectName string = 'zrweb'
-
-@description('Static Web App SKU. Standard is required for staging slots and custom auth.')
-@allowed([
-  'Free'
-  'Standard'
-])
-param swaSku string = 'Standard'
-
-@description('Optional custom domain (e.g. zaidrustamov.com). Leave empty to skip binding.')
-param customDomain string = ''
 
 var resourceGroupName = 'rg-${projectName}-${environmentName}'
 
@@ -59,13 +52,13 @@ module workload './modules/workload.bicep' = {
     environmentName: environmentName
     projectName: projectName
     location: location
-    swaSku: swaSku
-    customDomain: customDomain
     tags: commonTags
   }
 }
 
 output resourceGroupName string = rg.name
-output staticWebAppName string = workload.outputs.staticWebAppName
-output staticWebAppDefaultHostname string = workload.outputs.staticWebAppDefaultHostname
+output storageAccountName string = workload.outputs.storageAccountName
+output staticWebsiteHost string = workload.outputs.staticWebsiteHost
+output appInsightsName string = workload.outputs.appInsightsName
 output appInsightsConnectionString string = workload.outputs.appInsightsConnectionString
+output logAnalyticsResourceId string = workload.outputs.logAnalyticsResourceId

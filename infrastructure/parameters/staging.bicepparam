@@ -1,7 +1,5 @@
 using '../main.bicep'
 
 param environmentName = 'staging'
-param location = 'westeurope'
+param location = 'swedencentral'
 param projectName = 'zrweb'
-param swaSku = 'Standard'
-param customDomain = ''

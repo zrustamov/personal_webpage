@@ -1,9 +1,9 @@
 name: CD — Production
 
 # Production deploy fires only on push to main (typically a release PR
-# merged from develop). The `production` GitHub environment must be
-# configured with required reviewers — that gate enforces the manual
-# approval step before any job in this workflow can begin.
+# merged from develop). The `production-approval` GitHub Environment must
+# be configured with required reviewers — that gate enforces the manual
+# approval step before any other job in this workflow can begin.
 
 on:
   push:
@@ -20,13 +20,14 @@ permissions:
   deployments: write
 
 env:
-  AZURE_LOCATION: westeurope
+  AZURE_LOCATION: swedencentral
   ENVIRONMENT: production
 
 jobs:
   # --------------------------------------------------------------------------
-  # 1. Manual approval gate — implemented via the `production` environment's
-  #    "Required reviewers" rule. The workflow pauses here until approval.
+  # 1. Manual approval gate — implemented via the `production-approval`
+  #    environment's "Required reviewers" rule. The workflow pauses here
+  #    until a reviewer approves.
   # --------------------------------------------------------------------------
   approval:
     name: Await manual approval
@@ -45,6 +46,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: approval
     environment: production
+    outputs:
+      resourceGroupName: ${{ steps.deploy.outputs.resourceGroupName }}
+      storageAccountName: ${{ steps.deploy.outputs.storageAccountName }}
+      staticWebsiteHost: ${{ steps.deploy.outputs.staticWebsiteHost }}
+      appInsightsName: ${{ steps.deploy.outputs.appInsightsName }}
     steps:
       - uses: actions/checkout@v4
 
@@ -71,36 +77,56 @@ jobs:
             --parameters infrastructure/parameters/production.bicepparam
 
       - name: Deploy Bicep
+        id: deploy
         run: |
-          az deployment sub create \
+          out=$(az deployment sub create \
             --name "prd-${GITHUB_RUN_ID}" \
             --location "$AZURE_LOCATION" \
             --template-file infrastructure/main.bicep \
-            --parameters infrastructure/parameters/production.bicepparam
+            --parameters infrastructure/parameters/production.bicepparam \
+            --query properties.outputs -o json)
+          echo "resourceGroupName=$(echo "$out" | jq -r .resourceGroupName.value)" >> "$GITHUB_OUTPUT"
+          echo "storageAccountName=$(echo "$out" | jq -r .storageAccountName.value)" >> "$GITHUB_OUTPUT"
+          echo "staticWebsiteHost=$(echo "$out" | jq -r .staticWebsiteHost.value)" >> "$GITHUB_OUTPUT"
+          echo "appInsightsName=$(echo "$out" | jq -r .appInsightsName.value)" >> "$GITHUB_OUTPUT"
+
+      - name: Enable static website hosting (idempotent)
+        run: |
+          az storage blob service-properties update \
+            --account-name "${{ steps.deploy.outputs.storageAccountName }}" \
+            --static-website \
+            --index-document index.html \
+            --404-document index.html \
+            --auth-mode login
 
   # --------------------------------------------------------------------------
-  # 3. Deploy site content to production SWA
+  # 3. Deploy site content to production Storage account
   # --------------------------------------------------------------------------
   deploy:
-    name: Deploy to Azure SWA (production)
+    name: Deploy to Storage (production)
     runs-on: ubuntu-latest
     needs: infrastructure
     environment:
       name: production
-      url: ${{ steps.swa.outputs.static_web_app_url }}
+      url: https://${{ needs.infrastructure.outputs.staticWebsiteHost }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Azure Static Web Apps
-        id: swa
-        uses: Azure/static-web-apps-deploy@v1
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PRODUCTION }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: upload
-          app_location: src
-          output_location: ''
-          skip_app_build: true
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Sync src/ to $web container
+        run: |
+          az storage blob upload-batch \
+            --account-name "${{ needs.infrastructure.outputs.storageAccountName }}" \
+            --auth-mode login \
+            --destination '$web' \
+            --source ./src \
+            --overwrite true
 
   # --------------------------------------------------------------------------
   # 4. Post-deploy smoke tests against the live production URL
@@ -108,7 +134,7 @@ jobs:
   smoke:
     name: Production smoke tests
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: [infrastructure, deploy]
     steps:
       - uses: actions/checkout@v4
 
@@ -122,9 +148,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
+      - name: Wait for site to be reachable
+        run: npx wait-on https://${{ needs.infrastructure.outputs.staticWebsiteHost }}/index.html --timeout 120000
+
       - name: Smoke tests
         env:
-          E2E_BASE_URL: ${{ secrets.PRODUCTION_BASE_URL }}
+          E2E_BASE_URL: https://${{ needs.infrastructure.outputs.staticWebsiteHost }}
           CI: 'true'
         run: npm run test:smoke
 
@@ -137,13 +166,13 @@ jobs:
           retention-days: 30
 
   # --------------------------------------------------------------------------
-  # 5. Application Insights health check — query the last 5 min for
-  #    failed requests and abort if the error rate spikes after deploy.
+  # 5. Health check — query Log Analytics for storage 4xx/5xx after deploy.
+  #    Storage diagnostic logs flow into LA via Bicep diagnostic settings.
   # --------------------------------------------------------------------------
   health:
     name: Post-deploy health check
     runs-on: ubuntu-latest
-    needs: smoke
+    needs: [infrastructure, smoke]
     steps:
       - name: Azure login (OIDC)
         uses: azure/login@v2
@@ -153,24 +182,25 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Wait for telemetry to flush
-        run: sleep 60
+        run: sleep 90
 
-      - name: Query Application Insights for errors
+      - name: Query Log Analytics for storage errors
         run: |
-          QUERY='requests | where timestamp > ago(5m) | summarize total=count(), failed=countif(success == false)'
-          result=$(az monitor app-insights query \
-            --app "appi-zrweb-production" \
-            --resource-group "rg-zrweb-production" \
+          QUERY='StorageBlobLogs | where TimeGenerated > ago(5m) | summarize total=count(), errors=countif(StatusCode >= 400)'
+          ws_id=$(az monitor log-analytics workspace show \
+            --resource-group "${{ needs.infrastructure.outputs.resourceGroupName }}" \
+            --workspace-name "log-zrweb-production" \
+            --query customerId -o tsv)
+          result=$(az monitor log-analytics query \
+            --workspace "$ws_id" \
             --analytics-query "$QUERY" \
             -o json)
           echo "$result"
-          failed=$(echo "$result" | jq -r '.tables[0].rows[0][1] // 0')
-          total=$(echo "$result" | jq -r '.tables[0].rows[0][0] // 0')
-          echo "Total requests (5m): $total | Failed: $failed"
-          if [ "$total" -gt 0 ] && [ "$failed" -gt 0 ]; then
-            rate=$(awk -v f="$failed" -v t="$total" 'BEGIN { printf "%.2f", (f/t)*100 }')
-            echo "Error rate: ${rate}%"
-            awk -v f="$failed" -v t="$total" 'BEGIN { exit ((f/t) > 0.05) ? 1 : 0 }'
+          total=$(echo "$result" | jq -r '.[0].total // 0')
+          errors=$(echo "$result" | jq -r '.[0].errors // 0')
+          echo "Total: $total | Errors: $errors"
+          if [ "$total" -gt 0 ] && [ "$errors" -gt 0 ]; then
+            awk -v e="$errors" -v t="$total" 'BEGIN { printf "Error rate: %.2f%%\n", (e/t)*100; exit ((e/t) > 0.05) ? 1 : 0 }'
           fi
 
   # --------------------------------------------------------------------------

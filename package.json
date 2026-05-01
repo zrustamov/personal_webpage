@@ -2,7 +2,8 @@
   "name": "personal-webpage",
   "version": "1.0.0",
   "private": true,
-  "description": "Zaid Rustamov — personal site, deployed via a multi-stage CI/CD pipeline to Azure Static Web Apps.",
+  "type": "module",
+  "description": "Zaid Rustamov — personal site, deployed via a multi-stage CI/CD pipeline to Azure Storage static-website hosting.",
   "repository": {
     "type": "git",
     "url": "https://github.com/zrustamov/personal_webpage.git"
@@ -30,6 +31,12 @@
     "stylelint": "^16.10.0",
     "stylelint-config-standard": "^36.0.1",
     "wait-on": "^8.0.1"
+  },
+  "overrides": {
+    "lodash": "^4.17.21",
+    "semver": "^7.5.4",
+    "tmp": "^0.2.4",
+    "cookie": "^0.7.0"
   },
   "engines": {
     "node": ">=20"

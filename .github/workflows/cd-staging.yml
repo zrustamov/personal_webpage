@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  AZURE_LOCATION: westeurope
+  AZURE_LOCATION: swedencentral
   ENVIRONMENT: staging
 
 jobs:
@@ -27,7 +27,8 @@ jobs:
     environment: staging
     outputs:
       resourceGroupName: ${{ steps.deploy.outputs.resourceGroupName }}
-      staticWebAppName: ${{ steps.deploy.outputs.staticWebAppName }}
+      storageAccountName: ${{ steps.deploy.outputs.storageAccountName }}
+      staticWebsiteHost: ${{ steps.deploy.outputs.staticWebsiteHost }}
     steps:
       - uses: actions/checkout@v4
 
@@ -63,32 +64,55 @@ jobs:
             --parameters infrastructure/parameters/staging.bicepparam \
             --query properties.outputs -o json)
           echo "resourceGroupName=$(echo "$out" | jq -r .resourceGroupName.value)" >> "$GITHUB_OUTPUT"
-          echo "staticWebAppName=$(echo "$out" | jq -r .staticWebAppName.value)" >> "$GITHUB_OUTPUT"
+          echo "storageAccountName=$(echo "$out" | jq -r .storageAccountName.value)" >> "$GITHUB_OUTPUT"
+          echo "staticWebsiteHost=$(echo "$out" | jq -r .staticWebsiteHost.value)" >> "$GITHUB_OUTPUT"
+
+      - name: Enable static website hosting (idempotent)
+        run: |
+          az storage blob service-properties update \
+            --account-name "${{ steps.deploy.outputs.storageAccountName }}" \
+            --static-website \
+            --index-document index.html \
+            --404-document index.html \
+            --auth-mode login
 
   # --------------------------------------------------------------------------
-  # 2. Deploy site content to staging SWA
+  # 2. Deploy site content to staging Storage account ($web container)
   # --------------------------------------------------------------------------
   deploy:
-    name: Deploy to Azure SWA (staging)
+    name: Deploy to Storage (staging)
     runs-on: ubuntu-latest
     needs: infrastructure
     environment:
       name: staging
-      url: ${{ steps.swa.outputs.static_web_app_url }}
+      url: https://${{ needs.infrastructure.outputs.staticWebsiteHost }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Azure Static Web Apps
-        id: swa
-        uses: Azure/static-web-apps-deploy@v1
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_STAGING }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: upload
-          app_location: src
-          output_location: ''
-          skip_app_build: true
-          deployment_environment: ''  # empty = production environment of THIS SWA (which is staging tenant)
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Sync src/ to $web container
+        run: |
+          az storage blob upload-batch \
+            --account-name "${{ needs.infrastructure.outputs.storageAccountName }}" \
+            --auth-mode login \
+            --destination '$web' \
+            --source ./src \
+            --overwrite true
+
+      - name: Set short cache for HTML, long for assets
+        run: |
+          az storage blob update \
+            --account-name "${{ needs.infrastructure.outputs.storageAccountName }}" \
+            --auth-mode login \
+            --container-name '$web' \
+            --name index.html \
+            --content-cache 'public, max-age=300, must-revalidate' || true
 
   # --------------------------------------------------------------------------
   # 3. End-to-end tests against the live staging URL
@@ -96,7 +120,7 @@ jobs:
   e2e:
     name: E2E tests (Playwright)
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: [infrastructure, deploy]
     steps:
       - uses: actions/checkout@v4
 
@@ -110,9 +134,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium firefox
 
+      - name: Wait for site to be reachable
+        run: npx wait-on https://${{ needs.infrastructure.outputs.staticWebsiteHost }}/index.html --timeout 120000
+
       - name: Run E2E suite against staging
         env:
-          E2E_BASE_URL: ${{ secrets.STAGING_BASE_URL }}
+          E2E_BASE_URL: https://${{ needs.infrastructure.outputs.staticWebsiteHost }}
           CI: 'true'
         run: npm run test:e2e
 
@@ -125,7 +152,7 @@ jobs:
           retention-days: 14
 
   # --------------------------------------------------------------------------
-  # 4. Notify on failure (uses GitHub deployments status — surfaces in PRs)
+  # 4. Summary
   # --------------------------------------------------------------------------
   report:
     name: Report status
@@ -139,3 +166,4 @@ jobs:
           echo "- Infrastructure: ${{ needs.infrastructure.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- Deploy:         ${{ needs.deploy.result }}" >> $GITHUB_STEP_SUMMARY
           echo "- E2E:            ${{ needs.e2e.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- URL:            https://${{ needs.infrastructure.outputs.staticWebsiteHost }}" >> $GITHUB_STEP_SUMMARY
