@@ -1,0 +1,21 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "wait": 500,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    }
+  },
+  "urls": [
+    "http://localhost:8080/index.html",
+    "http://localhost:8080/index-az.html",
+    "http://localhost:8080/pages/cv.html",
+    "http://localhost:8080/pages/projects.html",
+    "http://localhost:8080/pages/publications.html",
+    "http://localhost:8080/pages/talks.html",
+    "http://localhost:8080/pages/teaching.html",
+    "http://localhost:8080/pages/consulting.html",
+    "http://localhost:8080/pages/contact.html"
+  ]
+}

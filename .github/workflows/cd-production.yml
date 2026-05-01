@@ -1,0 +1,194 @@
+name: CD — Production
+
+# Production deploy fires only on push to main (typically a release PR
+# merged from develop). The `production` GitHub environment must be
+# configured with required reviewers — that gate enforces the manual
+# approval step before any job in this workflow can begin.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cd-production
+  cancel-in-progress: false
+
+permissions:
+  id-token: write
+  contents: read
+  deployments: write
+
+env:
+  AZURE_LOCATION: westeurope
+  ENVIRONMENT: production
+
+jobs:
+  # --------------------------------------------------------------------------
+  # 1. Manual approval gate — implemented via the `production` environment's
+  #    "Required reviewers" rule. The workflow pauses here until approval.
+  # --------------------------------------------------------------------------
+  approval:
+    name: Await manual approval
+    runs-on: ubuntu-latest
+    environment:
+      name: production-approval
+    steps:
+      - name: Approved
+        run: echo "Manual approval granted by ${{ github.actor }}"
+
+  # --------------------------------------------------------------------------
+  # 2. Provision / update production infrastructure
+  # --------------------------------------------------------------------------
+  infrastructure:
+    name: Deploy infrastructure (Bicep)
+    runs-on: ubuntu-latest
+    needs: approval
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Validate Bicep
+        run: |
+          az bicep build --file infrastructure/main.bicep
+          az deployment sub validate \
+            --location $AZURE_LOCATION \
+            --template-file infrastructure/main.bicep \
+            --parameters infrastructure/parameters/production.bicepparam
+
+      - name: What-if (preview changes)
+        run: |
+          az deployment sub what-if \
+            --location $AZURE_LOCATION \
+            --template-file infrastructure/main.bicep \
+            --parameters infrastructure/parameters/production.bicepparam
+
+      - name: Deploy Bicep
+        run: |
+          az deployment sub create \
+            --name "prd-${GITHUB_RUN_ID}" \
+            --location "$AZURE_LOCATION" \
+            --template-file infrastructure/main.bicep \
+            --parameters infrastructure/parameters/production.bicepparam
+
+  # --------------------------------------------------------------------------
+  # 3. Deploy site content to production SWA
+  # --------------------------------------------------------------------------
+  deploy:
+    name: Deploy to Azure SWA (production)
+    runs-on: ubuntu-latest
+    needs: infrastructure
+    environment:
+      name: production
+      url: ${{ steps.swa.outputs.static_web_app_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Azure Static Web Apps
+        id: swa
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PRODUCTION }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: src
+          output_location: ''
+          skip_app_build: true
+
+  # --------------------------------------------------------------------------
+  # 4. Post-deploy smoke tests against the live production URL
+  # --------------------------------------------------------------------------
+  smoke:
+    name: Production smoke tests
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Smoke tests
+        env:
+          E2E_BASE_URL: ${{ secrets.PRODUCTION_BASE_URL }}
+          CI: 'true'
+        run: npm run test:smoke
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-production-${{ github.run_id }}
+          path: playwright-report/
+          retention-days: 30
+
+  # --------------------------------------------------------------------------
+  # 5. Application Insights health check — query the last 5 min for
+  #    failed requests and abort if the error rate spikes after deploy.
+  # --------------------------------------------------------------------------
+  health:
+    name: Post-deploy health check
+    runs-on: ubuntu-latest
+    needs: smoke
+    steps:
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Wait for telemetry to flush
+        run: sleep 60
+
+      - name: Query Application Insights for errors
+        run: |
+          QUERY='requests | where timestamp > ago(5m) | summarize total=count(), failed=countif(success == false)'
+          result=$(az monitor app-insights query \
+            --app "appi-zrweb-production" \
+            --resource-group "rg-zrweb-production" \
+            --analytics-query "$QUERY" \
+            -o json)
+          echo "$result"
+          failed=$(echo "$result" | jq -r '.tables[0].rows[0][1] // 0')
+          total=$(echo "$result" | jq -r '.tables[0].rows[0][0] // 0')
+          echo "Total requests (5m): $total | Failed: $failed"
+          if [ "$total" -gt 0 ] && [ "$failed" -gt 0 ]; then
+            rate=$(awk -v f="$failed" -v t="$total" 'BEGIN { printf "%.2f", (f/t)*100 }')
+            echo "Error rate: ${rate}%"
+            awk -v f="$failed" -v t="$total" 'BEGIN { exit ((f/t) > 0.05) ? 1 : 0 }'
+          fi
+
+  # --------------------------------------------------------------------------
+  # 6. Tag the release commit on success
+  # --------------------------------------------------------------------------
+  tag:
+    name: Tag release
+    runs-on: ubuntu-latest
+    needs: health
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create release tag
+        run: |
+          tag="release-$(date -u +%Y%m%d-%H%M%S)"
+          git tag "$tag"
+          git push origin "$tag"

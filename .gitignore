@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json.bak
+
+# Test output
+.lighthouseci/
+playwright-report/
+test-results/
+coverage/
+
+# Lint cache
+.eslintcache
+.stylelintcache
+
+# Bicep build artifacts
+infrastructure/**/*.json
+!infrastructure/parameters/*.bicepparam
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Misc local debug
+firebase-debug.log
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Trivy / SARIF
+trivy-results.sarif

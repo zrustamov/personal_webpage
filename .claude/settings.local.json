@@ -5,7 +5,9 @@
       "Bash(python -c ' *)",
       "WebFetch(domain:scholar.google.com)",
       "WebFetch(domain:ieeexplore.ieee.org)",
-      "Bash(python -)"
+      "Bash(python -)",
+      "Bash(mkdir -p src)",
+      "Bash(git mv *)"
     ]
   }
 }
