@@ -17,7 +17,7 @@
     "test:a11y": "pa11y-ci --config tests/accessibility/pa11y-ci.json",
     "test:lighthouse": "lhci autorun --config=tests/lighthouse/lighthouserc.json",
     "test:e2e": "playwright test --config tests/e2e/playwright.config.js",
-    "test:smoke": "playwright test --config tests/e2e/playwright.config.js --grep @smoke",
+    "test:smoke": "playwright test --config tests/e2e/playwright.config.js --grep @smoke --project=chromium",
     "ci": "npm run lint && npm run test:a11y && npm run test:lighthouse"
   },
   "devDependencies": {
